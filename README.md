@@ -18,3 +18,4 @@ Double-click `index.html`. No install or build step. Uses an internet connection
 ## Next
 1. `git init` in this folder and commit `index.html`
 2. Make further changes with Claude Code opened in this folder
+3. 
