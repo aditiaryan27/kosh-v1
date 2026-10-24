@@ -59,11 +59,11 @@ h2{font-size:16px;font-weight:800}
 .tabs .on{color:var(--tx)}.tabs .on::after{content:"";position:absolute;left:50%;bottom:2px;width:5px;height:5px;margin-left:-2px;border-radius:50%;background:var(--gold)}
 #bd{position:fixed;inset:0;z-index:20;background:#000a;opacity:0;pointer-events:none;transition:.3s}
 #bd.o{opacity:1;pointer-events:auto}
-#sh,#fm,#iv{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:480px;margin:auto;background:var(--s1);border:1px solid var(--ln);border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-#sh.o,#fm.o,#iv.o{transform:none}
-#fm,#iv{max-height:92vh;overflow:auto}
+#sh,#fm,#iv,#pg{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:480px;margin:auto;background:var(--s1);border:1px solid var(--ln);border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#sh.o,#fm.o,#iv.o,#pg.o{transform:none}
+#fm,#iv,#pg{max-height:92vh;overflow:auto}
 .fl{display:block;margin-top:12px;font-size:12px;color:var(--mut)}
-.fl input,.fl select,.fg3 input{display:block;width:100%;margin-top:6px;background:var(--s2);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:11px 12px;font:600 14px Manrope,system-ui,sans-serif}
+.fl input,.fl select,.fl textarea,.fg3 input{display:block;width:100%;margin-top:6px;background:var(--s2);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:11px 12px;font:600 14px Manrope,system-ui,sans-serif}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .er{color:var(--red);font-size:12px;margin:10px 0;min-height:16px}
 .fg3{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;margin-top:8px}.fg3 input{margin-top:0;font-size:13px;padding:10px}
@@ -74,6 +74,19 @@ h2{font-size:16px;font-weight:800}
 #sp span{display:inline-block;font:600 84px/1.3 'Dancing Script',cursive;color:#fff;padding:0 14px;animation:wr 1.5s .3s cubic-bezier(.5,0,.2,1) both}
 @keyframes wr{from{clip-path:inset(0 100% 0 0);opacity:.3}to{clip-path:inset(0 0 0 0);opacity:1}}
 @media(prefers-reduced-motion:reduce){#sp span{animation:none}}
+.fl textarea{resize:none}
+.btn.ic{padding:9px 11px;display:grid;place-items:center}
+#dr{position:fixed;top:0;bottom:0;left:0;width:min(320px,86vw);z-index:22;background:var(--s1);border-right:1px solid var(--ln);padding:calc(26px + env(safe-area-inset-top,0px)) 8px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;transform:translateX(-105%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#dr.o{transform:none}
+.dh{padding:0 12px 18px;border-bottom:1px solid var(--ln);margin-bottom:8px}
+.ava{width:64px;height:64px;border-radius:50%;background:var(--gold) center/cover;color:var(--on);display:grid;place-items:center;font-weight:800;font-size:26px;margin-bottom:12px}
+.ava.lg{width:72px;height:72px}
+.mi{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:none;padding:14px 12px;border-radius:12px;cursor:pointer;text-align:left}
+.mi:hover{background:var(--s2)}.mi.out{color:var(--red);margin-top:auto}
+details{border-top:1px solid var(--ln);padding:12px 0}summary{cursor:pointer;font-weight:800}details p{color:var(--mut);margin-top:8px;font-weight:600}
+#lg{--s2:#1C1C22;--ln:#272730;--tx:#F3F0E8;--mut:#8F8D98;--red:#E0483A;position:fixed;inset:0;z-index:90;background:#000;color:#F3F0E8;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+#lg.o{display:flex}
+.wm{font:600 64px/1.3 'Dancing Script',cursive;color:#fff;margin-bottom:20px}.lgc{width:100%;max-width:340px}
 #sh textarea{width:100%;margin:12px 0;background:var(--s2);color:var(--tx);border:1px solid var(--ln);border-radius:14px;padding:12px;font:500 14px/1.5 Manrope,system-ui,sans-serif;resize:none}
 #toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:99px;opacity:0;transition:.3s;z-index:60;pointer-events:none;max-width:90%;text-align:center}
 #toast.o{opacity:1;transform:translate(-50%,0)}
@@ -97,10 +110,13 @@ h2{font-size:16px;font-weight:800}
 </style></head>
 <body>
 <div id="sp"><span>rumi</span></div>
-<header><div class="in"><div class="pw"><button class="chip" id="pm"><span class="av">C</span>Creator ▾</button><div class="menu" id="mn"></div></div><div class="sp" style="gap:8px"><button class="btn" id="snd">Sound on</button><button class="btn p" id="np">New project</button></div></div></header>
+<header><div class="in"><div class="sp" style="gap:10px"><button class="btn ic" id="mb" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></button><div class="pw"><button class="chip" id="pm"><span class="av">C</span>Creator ▾</button><div class="menu" id="mn"></div></div></div><div class="sp" style="gap:8px"><button class="btn p" id="np">New project</button></div></div></header>
 <main class="in app" id="v"></main>
 <nav class="tabs"><div class="in" id="tb"></div></nav>
 <div id="bd" data-x></div>
+<aside id="dr"><div class="dh"><div class="ava" id="dav"></div><b class="t" id="dn"></b><div class="mut s" id="dm"></div><div class="tag" id="dv" style="display:inline-block;margin-top:10px"></div></div><div id="dl2"></div><button class="mi out" id="lo"><span>Log out</span></button></aside>
+<div id="pg"></div>
+<div id="lg"><span class="wm">rumi</span><div class="lgc"><label class="fl">Email<input id="lge" type="email" autocomplete="off"></label><label class="fl">Password<input id="lgp" type="password"></label><div class="er" id="lgr"></div><button class="btn p" id="lgb" style="width:100%;padding:13px">Log in</button><p class="mut s" style="margin-top:12px;text-align:center">Prototype: any email and password will work.</p></div></div>
 <div id="sh"><div class="sp"><h2 id="sht"></h2><button class="btn" data-x>Close</button></div><div class="seg" id="tn"></div><textarea id="tx" rows="8"></textarea><div class="sp"><a class="btn" id="wa" target="_blank" rel="noopener">Open in WhatsApp</a><button class="btn p" id="cp">Copy message</button></div></div>
 <div id="fm"><div class="sp"><h2 id="fht">New project</h2><button class="btn" data-x>Close</button></div>
 <label class="fl"><span id="flb">Client name</span><input id="fb" placeholder="e.g. Nykaa" autocomplete="off"></label>
@@ -218,8 +234,8 @@ return `${perSeg()}
 <div class="card dash"><b>Turnaround time</b><p class="s" style="margin-top:4px">Appears once you have closed a few projects with delivery dates.</p></div>`}
 function render(){$('#v').innerHTML=S.tab=='d'?dash():S.tab=='p'?proj():ana();
 $('#tb').innerHTML=[['d','Dashboard'],['p','Projects'],['a','Analytics']].map(([k,n])=>`<button data-tab="${k}" class="${S.tab==k?'on':''}">${n}</button>`).join('');
-skin();$('#pm').innerHTML=`<span class="av">${PC[S.pe].n[0]}</span>${PC[S.pe].n} ▾`;$('#mn').innerHTML=Object.entries(PC).map(([k,c])=>`<button data-pe="${k}"><span>${c.n}</span><span class="mut s">${k==S.pe?'Viewing':''}</span></button>`).join('');
-$('#snd').textContent=S.snd?'Sound on':'Sound off';
+skin();$('#pm').innerHTML=`<span class="av">${PC[S.pe].n[0]}</span>${PC[S.pe].n.split(' ')[0]} ▾`;$('#mn').innerHTML=Object.entries(PC).map(([k,c])=>`<button data-pe="${k}"><span>${c.n}</span><span class="mut s">${k==S.pe?'Viewing':''}</span></button>`).join('');
+
 if(S.tab=='d'){const e=$('#cnt'),v=+e.dataset.v,s=performance.now();(function f(t){const k=Math.min((t-s)/700,1);e.textContent=fmt(v*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}}
 function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('o');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('o'),2400)}
 function msg(){const{p,k,tone}=sh;if(S.pe=='b')return k=='work'?`Hi team ${p.b}, checking in on the ${p.c} deliverable, due ${dm(p.dl)}. Could you share a status update or a draft for review?`:`Hi team ${p.b}, an update on the ${p.c} payment of ${fmt(bal(p))}, due ${dm(p.due)}. It is with our finance team and I will confirm the release date shortly. Please share the invoice if you have not already.`;if(k=='inv'){const i=p.inv;return `Hi team ${p.b}, please find attached invoice ${i.no} dated ${dm(i.date)} for ${fmt(i.amt)} against ${p.c}. Payment is due by ${dm(p.due)}. Please let me know if you need anything else to process it. Thank you!`}if(k=='work')return `Hi team ${p.b}, sharing the final cut for ${p.c}: [link]. Please review and share feedback or approval by [date]. Once it is approved I will mark the deliverable as done so we can close out the invoice. Thank you!`;
@@ -228,7 +244,7 @@ return tone=='f'?`Hi team ${p.b}, hope the week is going well! A quick follow-up
 function setMsg(){$('#tx').value=msg();wa()}const wa=()=>$('#wa').href='https://wa.me/?text='+encodeURIComponent($('#tx').value);
 function openSh(id,k){sh={p:P.find(p=>p.id==id),k,tone:'f'};$('#sht').textContent=S.pe=='b'?'Message '+sh.p.b:k=='pay'?'Follow up with '+sh.p.b:k=='inv'?'Send invoice to '+sh.p.b:'Submit work to '+sh.p.b;
 $('#tn').innerHTML=k=='pay'?[['f','Friendly'],['s','Firm']].map(([v,n])=>`<button data-tone="${v}" class="${v=='f'?'on':''}">${n}</button>`).join(''):'';$('#tn').style.display=k=='pay'&&S.pe!='b'?'flex':'none';setMsg();$('#sh').classList.add('o');$('#bd').classList.add('o')}
-const closeSh=()=>{$('#sh').classList.remove('o');$('#fm').classList.remove('o');$('#iv').classList.remove('o');$('#bd').classList.remove('o')};
+const closeSh=()=>{$('#sh').classList.remove('o');$('#fm').classList.remove('o');$('#iv').classList.remove('o');$('#pg').classList.remove('o');$('#dr').classList.remove('o');$('#bd').classList.remove('o')};
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),add=n=>iso(new Date(T.getTime()+n*day));
 let ed=null,wd=[],wi=[],ip=null;
 const fileChips=(a,k)=>a.map((f,i)=>`<span class="dc">${f.n}<button data-rm="${k}:${i}" aria-label="Remove ${f.n}">×</button></span>`).join(''),chips=()=>$('#fkl').innerHTML=fileChips(wd,'d'),ichips=()=>$('#iFL').innerHTML=fileChips(wi,'i');
@@ -250,6 +266,27 @@ $('#iv').classList.add('o');$('#bd').classList.add('o')}
 function saveIv(){const v=i=>$('#'+i).value.trim(),er=m=>($('#iE').textContent=m,0),a=+v('iA');
 if(!v('iN'))return er('Add the invoice number.');if(!(a>0))return er('Enter the invoice amount.');if(!v('iD')||!v('iP'))return er('Add the invoice date and the payment due date.');if(v('iP')<v('iD'))return er('Payment due cannot be before the invoice date.');
 ip.inv={no:v('iN'),date:v('iD'),amt:a,files:wi.slice()};ip.due=v('iP');const id=ip.id;closeSh();render();if(S.pe!='b')openSh(id,'inv');toast('Invoice '+ip.inv.no+' saved')}
+const U={n:'Aditi',em:'aditi@example.com',ph:'',bz:'',img:''},ST={th:'a',r1:1,r2:1},T0=document.documentElement.getAttribute('data-theme');let tk=1041;
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const setAv=e=>{e.style.backgroundImage=U.img?`url(${U.img})`:'none';e.textContent=U.img?'':(U.n||'?')[0].toUpperCase()};
+const readImg=(f,cb)=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const s=Math.min(1,256/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.85))};i.src=r.result};r.readAsDataURL(f)};
+const applyTh=()=>{const r=document.documentElement;ST.th=='a'?(T0?r.setAttribute('data-theme',T0):r.removeAttribute('data-theme')):r.setAttribute('data-theme',ST.th=='d'?'dark':'light')};
+const FAQ=[['What is the difference between received and to collect?','Received is money already in your account. To collect is agreed but not paid yet, and overdue is the part past its due date.'],['How do I close a project?','Once a project is paid in full, tap Close project on its card. If you close one by mistake, tap Reopen project to get it back.'],['How do I add a contract or an invoice?','Tap Edit on a project to attach a contract as a PDF or image. Use the invoice button on the card to record an invoice and draft the message to send with it.'],['Why do my totals look low?','Totals cover only the projects you have recorded, for the period picked at the top.'],['Can I delete a project?','Yes. Tap Delete on its card, then tap again to confirm.']];
+function openDr(){setAv($('#dav'));$('#dn').textContent=U.n;$('#dm').textContent=U.em;$('#dv').textContent='Viewing as '+PC[S.pe].n.toLowerCase();
+$('#dl2').innerHTML=[['pf','Profile'],['set','Settings'],['help','Help centre'],['ct','Contact us'],['iss','Raise an issue']].map(([k,n])=>`<button class="mi" data-pg="${k}"><span>${n}</span><span class="mut">›</span></button>`).join('');$('#dr').classList.add('o');$('#bd').classList.add('o')}
+function openPg(k){let b='';const h=`<div class="sp"><h2>${{pf:'Profile',set:'Settings',help:'Help centre',ct:'Contact us',iss:'Raise an issue'}[k]}</h2><button class="btn" data-x>Close</button></div>`;
+if(k=='pf')b=`<div class="sp" style="justify-content:flex-start;gap:16px;margin:16px 0 4px"><div class="ava lg" id="pav" style="margin:0"></div><label class="btn">Change photo<input id="pfi" type="file" accept="image/*" hidden></label></div><label class="fl">Full name<input id="qn" autocomplete="off"></label><label class="fl">Email<input id="qe" type="email" autocomplete="off"></label><label class="fl">Phone<input id="qp" type="tel" placeholder="+91" autocomplete="off"></label><label class="fl">Business or channel name<input id="qb" autocomplete="off"></label><div class="er" id="pge"></div><button class="btn p" id="pgs" style="width:100%;padding:13px">Save profile</button>`;
+if(k=='set')b=`<div class="mut s" style="margin:16px 0 6px">Appearance</div>${seg([['a','Auto'],['d','Dark'],['l','Light']],'th',ST.th)}<div class="row" style="margin-top:12px"><span>Sound</span><button class="btn" id="snd">${S.snd?'On':'Off'}</button></div><div class="row"><span>Payment reminders</span><button class="btn" data-tg="r1">${ST.r1?'On':'Off'}</button></div><div class="row"><span>Deliverable reminders</span><button class="btn" data-tg="r2">${ST.r2?'On':'Off'}</button></div><div class="row"><span>Currency</span><span class="mut">Indian rupee (₹)</span></div><div class="row"><span>Financial year</span><span class="mut">April to March</span></div><p class="mut s" style="margin-top:14px">Reminders and currency are placeholders in this prototype.</p>`;
+if(k=='help')b=`<p class="mut s" style="margin:8px 0 6px">Quick answers about how Rumi works.</p>${FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}<div class="acts" style="margin-top:16px"><button class="btn" data-pg="ct">Contact us</button><button class="btn" data-pg="iss">Raise an issue</button></div>`;
+if(k=='ct')b=`<p class="mut s" style="margin:8px 0">Placeholder details until support is set up.</p><div class="row"><div><b>Email</b><div class="mut s">support@rumi.example</div></div><a class="btn p" href="mailto:support@rumi.example">Write to us</a></div><div class="row"><div><b>Something wrong in the app?</b><div class="mut s">Tell us what happened</div></div><button class="btn" data-pg="iss">Raise an issue</button></div>`;
+if(k=='iss')b=`<label class="fl">What is this about<select id="ic"><option>Wrong figure</option><option>Something is broken</option><option>Feature request</option><option>Other</option></select></label><label class="fl">Project (optional)<select id="ij"><option value="">None</option>${P.map(p=>`<option>${esc(p.b+', '+p.c)}</option>`).join('')}</select></label><label class="fl">Summary<input id="is1" placeholder="One line" autocomplete="off"></label><label class="fl">Details<textarea id="id1" rows="4"></textarea></label><label class="fl">Screenshot (optional)<input id="if1" type="file" accept="image/*"></label><div class="er" id="ie2"></div><button class="btn p" id="iss" style="width:100%;padding:13px">Submit issue</button>`;
+$('#pg').innerHTML=h+b;if(k=='pf'){setAv($('#pav'));$('#qn').value=U.n;$('#qe').value=U.em;$('#qp').value=U.ph;$('#qb').value=U.bz}
+$('#dr').classList.remove('o');$('#pg').classList.add('o');$('#bd').classList.add('o')}
+function saveProf(){const v=i=>$('#'+i).value.trim();if(!v('qn'))return $('#pge').textContent='Add your name.';if(!v('qe').includes('@'))return $('#pge').textContent='Enter a valid email.';U.n=v('qn');U.em=v('qe');U.ph=v('qp');U.bz=v('qb');closeSh();toast('Profile saved')}
+function sendIss(){const v=i=>$('#'+i).value.trim();if(!v('is1'))return $('#ie2').textContent='Add a one-line summary.';if(!v('id1'))return $('#ie2').textContent='Describe what happened.';const n='RUMI-'+(++tk);
+$('#pg').innerHTML=`<div class="sp"><h2>Issue logged</h2><button class="btn" data-x>Close</button></div><p style="margin:14px 0 4px"><b>${n}</b></p><p class="mut">${esc(v('ic'))}: ${esc(v('is1'))}</p><p class="mut s" style="margin-top:12px">This is a prototype, so nothing has been sent.</p><div class="acts" style="margin-top:16px"><button class="btn" data-pg="iss">Raise another</button></div>`}
+function logout(){closeSh();$('#lge').value=U.em;$('#lgp').value='';$('#lgr').textContent='';$('#lg').classList.add('o')}
+function login(){const e=$('#lge').value.trim();if(!e.includes('@'))return $('#lgr').textContent='Enter a valid email.';if(!$('#lgp').value)return $('#lgr').textContent='Enter your password.';U.em=e;$('#lg').classList.remove('o');toast('Welcome back, '+U.n)}
 let AC;function chime(){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;
 const n=(f,s,d,g,ty)=>{const o=AC.createOscillator(),v=AC.createGain();o.type=ty||'triangle';o.frequency.value=f;v.gain.setValueAtTime(0,t+s);v.gain.linearRampToValueAtTime(g,t+s+.02);v.gain.exponentialRampToValueAtTime(.0001,t+s+d);o.connect(v);v.connect(AC.destination);o.start(t+s);o.stop(t+s+d+.05)};
 const o=AC.createOscillator(),v=AC.createGain();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(45,t+.35);v.gain.setValueAtTime(.35,t);v.gain.exponentialRampToValueAtTime(.0001,t+.4);o.connect(v);v.connect(AC.destination);o.start(t);o.stop(t+.45);
@@ -267,10 +304,12 @@ document.addEventListener('click',e=>{const t=e.target.closest('button,[data-x]'
 if(!e.target.closest('.pw'))$('#mn').classList.remove('o');
 if(!t)return;const d=t.dataset;
 if(t.id=='pm')return $('#mn').classList.toggle('o');
-if(t.id=='snd'){S.snd=!S.snd;return render()}
+if(t.id=='snd'){S.snd=!S.snd;return openPg('set')}
 if(t.id=='cp'){const x=$('#tx');x.select();try{navigator.clipboard.writeText(x.value).catch(()=>document.execCommand('copy'))}catch(_){document.execCommand('copy')}return toast('Message copied')}
 if(t.id=='np')return openFm();if(t.id=='fs')return saveFm();if(t.id=='iS')return saveIv();if(t.id=='cd'){$('#cele').classList.remove('go');S.tab='p';S.pf='c';return render()}
 if(d.x!==undefined)return closeSh();
+if(t.id=='mb')return openDr();if(t.id=='lo')return logout();if(t.id=='pgs')return saveProf();if(t.id=='iss')return sendIss();if(t.id=='lgb')return login();
+if(d.pg)return openPg(d.pg);if(d.th){ST.th=d.th;applyTh();return openPg('set')}if(d.tg){ST[d.tg]=ST[d.tg]?0:1;return openPg('set')}
 if(d.pe)return setPe(d.pe);
 if(d.k){S.per=d.k}else if(d.tab){S.tab=d.tab;scrollTo(0,0)}else if(d.pf){S.pf=d.pf}
 else if(d.dr){const[i,k]=d.dr.split(':');return openSh(i,k)}
@@ -288,5 +327,7 @@ $('#tx').addEventListener('input',wa);
 const pick=(id,arr,fn)=>$(id).addEventListener('change',e=>{[...e.target.files].forEach(f=>arr().push({n:f.name,u:URL.createObjectURL(f)}));e.target.value='';fn()});
 pick('#fk',()=>wd,chips);pick('#iF',()=>wi,ichips);
 const sp=$('#sp'),hide=()=>{sp.classList.add('out');setTimeout(()=>sp.remove(),800)};sp.onclick=hide;setTimeout(hide,matchMedia('(prefers-reduced-motion:reduce)').matches?900:2900);
+document.addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(e.target.id=='pfi'&&f)readImg(f,u=>{U.img=u;setAv($('#pav'))})});
+$('#lgp').addEventListener('keydown',e=>{if(e.key=='Enter')login()});
 render();
 </script></body></html>
