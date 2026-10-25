@@ -110,11 +110,11 @@ details{border-top:1px solid var(--ln);padding:12px 0}summary{cursor:pointer;fon
 </style></head>
 <body>
 <div id="sp"><span>rumi</span></div>
-<header><div class="in"><div class="sp" style="gap:10px"><button class="btn ic" id="mb" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></button><div class="pw"><button class="chip" id="pm"><span class="av">C</span>Creator ▾</button><div class="menu" id="mn"></div></div></div><div class="sp" style="gap:8px"><button class="btn p" id="np">New project</button></div></div></header>
+<header><div class="in"><button class="chip" id="pm"><span class="av">C</span>Creator</button><div class="sp" style="gap:8px"><button class="btn p" id="np">New project</button></div></div></header>
 <main class="in app" id="v"></main>
 <nav class="tabs"><div class="in" id="tb"></div></nav>
 <div id="bd" data-x></div>
-<aside id="dr"><div class="dh"><div class="ava" id="dav"></div><b class="t" id="dn"></b><div class="mut s" id="dm"></div><div class="tag" id="dv" style="display:inline-block;margin-top:10px"></div></div><div id="dl2"></div><button class="mi out" id="lo"><span>Log out</span></button></aside>
+<aside id="dr"><div class="dh"><div class="ava" id="dav"></div><b class="t" id="dn"></b><div class="mut s" id="dm"></div><div class="tag" id="dv" style="display:inline-block;margin-top:10px"></div></div><div id="dl2" style="overflow:auto;flex:1"></div><button class="mi out" id="lo"><span>Log out</span></button></aside>
 <div id="pg"></div>
 <div id="lg"><span class="wm">rumi</span><div class="lgc"><label class="fl">Email<input id="lge" type="email" autocomplete="off"></label><label class="fl">Password<input id="lgp" type="password"></label><div class="er" id="lgr"></div><button class="btn p" id="lgb" style="width:100%;padding:13px">Log in</button><p class="mut s" style="margin-top:12px;text-align:center">Prototype: any email and password will work.</p></div></div>
 <div id="sh"><div class="sp"><h2 id="sht"></h2><button class="btn" data-x>Close</button></div><div class="seg" id="tn"></div><textarea id="tx" rows="8"></textarea><div class="sp"><a class="btn" id="wa" target="_blank" rel="noopener">Open in WhatsApp</a><button class="btn p" id="cp">Copy message</button></div></div>
@@ -178,21 +178,21 @@ b:[
 {id:1,b:'Ogilvy India',t:'Agency',c:'Diwali Glow campaign',fee:600000,rec:300000,due:'2026-10-28',d:'2026-10-02',dl:'2026-10-26',dv:false,e:[]},
 {id:2,b:'Aarav Vlogs',t:'Creator',c:'Diwali Glow reels',fee:90000,rec:0,due:'2026-10-16',d:'2026-10-06',dl:'2026-10-14',dv:true,e:[]},
 {id:3,b:'Mira Cooks',t:'Creator',c:'Festive recipe integration',fee:80000,rec:80000,due:'2026-10-18',paid:'2026-10-17',d:'2026-10-08',dl:'2026-10-12',dv:true,e:[]},
-{id:4,b:'Rohan Edits',t:'Editor',c:'Hero film final cut',fee:45000,rec:22500,due:'2026-11-02',d:'2026-10-12',dl:'2026-10-30',dv:false,e:[]},
+{id:4,b:'Rohan Edits',t:'Production',c:'Hero film final cut',fee:45000,rec:22500,due:'2026-11-02',d:'2026-10-12',dl:'2026-10-30',dv:false,e:[]},
 {id:5,b:'Sana Beauty',t:'Creator',c:'Launch unboxing',fee:70000,rec:0,due:'2026-11-10',d:'2026-10-22',dl:'2026-11-04',dv:false,e:[]},
 {id:6,b:'Spark Media',t:'Agency',c:'Summer sale campaign',fee:400000,rec:400000,due:'2026-08-30',paid:'2026-09-02',d:'2026-08-05',dl:'2026-08-25',dv:true,x:1,e:[]},
-{id:7,b:'Rohan Edits',t:'Editor',c:'Summer sale cutdowns',fee:35000,rec:35000,due:'2026-09-05',paid:'2026-09-04',d:'2026-08-12',dl:'2026-08-30',dv:true,x:1,e:[]},
+{id:7,b:'Rohan Edits',t:'Production',c:'Summer sale cutdowns',fee:35000,rec:35000,due:'2026-09-05',paid:'2026-09-04',d:'2026-08-12',dl:'2026-08-30',dv:true,x:1,e:[]},
 {id:8,b:'Aarav Vlogs',t:'Creator',c:'Summer sale reels',fee:85000,rec:85000,due:'2026-09-10',paid:'2026-09-15',d:'2026-08-15',dl:'2026-09-01',dv:true,x:1,e:[]}]};
 let P=DB.c;
 const R={M:['Oct 2026','2026-10-01','2026-10-31'],Q:['Q3 FY27','2026-10-01','2026-12-31'],Y:['FY 2026–27','2026-04-01','2027-03-31']};
 const B={hl:'Received in',of:'agreed',lg:['Received','To collect','Overdue'],rw:'received',mk:'Mark received',fu:'Follow up',sw:'Submit work',si:'Submit invoice',fb:'Client name',fa:'Agreed fee (₹)',fr:'Received so far (₹)',ty:[]},mk=o=>Object.assign({},B,o);
 const PC={
 c:mk({n:'Creator',cn:'ochre',dby:'brand',out:'Paid to your team',fc:'Collaborators (optional): what you pay and what is paid so far'}),
-e:mk({n:'Editor or videographer',col:'#28459E',cn:'navy',dby:'client',out:'Your costs',fc:'Your costs (optional): fee and paid so far',ty:['Creator','Brand','Agency']}),
+e:mk({n:'Production',col:'#1F3C88',cn:'navy',dby:'client',out:'Your costs',fc:'Your costs (optional): fee and paid so far',ty:['Creator','Brand','Agency']}),
 a:mk({n:'Agency',col:'#522CAD',cn:'deep violet',dby:'client',hl:'Received from clients in',of:'agreed with clients',out:'Paid to creators and editors',fa:'Agreed with client (₹)',fc:'Creators and editors you pay (optional): fee and paid so far',ty:['Brand','Creator']}),
-b:mk({n:'Brand',col:'#961B48',cn:'wine',dby:'vendor',hl:'Paid out in',of:'committed',lg:['Paid','To pay','Overdue'],out:'Spend by vendor type',rw:'paid',mk:'Mark paid',fu:'Message vendor',sw:'Ask for update',si:'Log invoice',fb:'Vendor name',fa:'Agreed amount (₹)',fr:'Paid so far (₹)',fc:'',ty:['Agency','Creator','Editor']})};
+b:mk({n:'Brand',col:'#961B48',cn:'wine',dby:'vendor',hl:'Paid out in',of:'committed',lg:['Paid','To pay','Overdue'],out:'Spend by vendor type',rw:'paid',mk:'Mark paid',fu:'Message vendor',sw:'Ask for update',si:'Log invoice',fb:'Vendor name',fa:'Agreed amount (₹)',fr:'Paid so far (₹)',fc:'',ty:['Agency','Creator','Production']})};
 function skin(){const c=PC[S.pe],r=document.documentElement.style;if(c.col){r.setProperty('--gold',c.col);r.setProperty('--ac',c.col);r.setProperty('--on','#fff')}else['--gold','--ac','--on'].forEach(k=>r.removeProperty(k))}
-function setPe(k){S.pe=k;P=DB[k];S.tab='d';S.per='M';S.pf='a';S.del=0;$('#mn').classList.remove('o');scrollTo(0,0);render()}
+function setPe(k){S.pe=k;P=DB[k];S.tab='d';S.per='M';S.pf='a';S.del=0;S.tf='';closeSh();scrollTo(0,0);render()}
 const S={tab:'d',per:'M',pf:'a',snd:1,pe:'c',del:0};let sh={};
 const bal=p=>p.fee-p.rec,inPer=()=>{const[,a,b]=R[S.per];return P.filter(p=>p.d>=a&&p.d<=b)};
 const seg=(a,k,cur)=>`<div class="seg">${a.map(([v,n])=>`<button data-${k}="${v}" class="${cur==v?'on':''}">${n}</button>`).join('')}</div>`;
@@ -206,13 +206,13 @@ if(b>0){const n=diff(p.due);if(n<=7)o.push({p,k:'pay',n,t:n<0?'Overdue by '+(-n)
 if(!p.dv){const n=diff(p.dl);if(n<=7)o.push({p,k:'work',n,t:n<0?'Deliverable is late':'Deliverable due in '+n+' days',s:S.pe=='b'?'ask for an update':'send for approval'})}});
 return o.sort((x,y)=>x.n-y.n).slice(0,4)}
 function dash(){const C=PC[S.pe],a=agg(),pc=x=>a.fee?x/a.fee*100:0,A=attn();
-const ex=Object.entries(a.ex).map(([w,[t,q]])=>`<div class="r2"><div class="sp"><span>${w}</span><span class="mut s">${fmt(q)} of ${fmt(t)}</span></div><div class="bar sm"><i style="width:${t?q/t*100:0}%;background:var(--grn)"></i></div>${t>q?`<div class="mut s">${fmt(t-q)} to be paid</div>`:'<div class="s" style="color:var(--grn)">All paid</div>'}</div>`).join('');
+const ex=Object.entries(a.ex).map(([w,[t,q]])=>`<div class="r2" data-tv="${w}" style="cursor:pointer"><div class="sp"><span>${w}</span><span class="mut s">${fmt(q)} of ${fmt(t)}</span></div><div class="bar sm"><i style="width:${t?q/t*100:0}%;background:var(--grn)"></i></div>${t>q?`<div class="sp"><span class="mut s">${fmt(t-q)} to be paid</span>${S.pe=='b'?'':`<button class="btn p" data-pn="g|${w}">Pay now</button>`}</div>`:'<div class="s" style="color:var(--grn)">All paid</div>'}</div>`).join('');
 return `${perSeg()}
 <div class="card"><div class="mut s">${C.hl} ${R[S.per][0]}</div><div class="big" id="cnt" data-v="${a.rec}">${fmt(a.rec)}</div><div class="mut s">of ${fmt(a.fee)} ${C.of}</div>
 <div class="bar" style="margin:18px 0 14px"><i style="width:${pc(a.rec)}%;background:var(--grn)"></i><i style="width:${pc(a.tc)}%;background:var(--gold)"></i><i style="width:${pc(a.od)}%;background:var(--red)"></i></div>
 <div class="leg">${lg(C.lg[0],a.rec,'--grn')}${lg(C.lg[1],a.tc,'--gold')}${lg(C.lg[2],a.od,'--red')}</div></div>
-<div class="card"><div class="sp"><h2>${C.out}</h2><span class="mut s">${fmt(a.et-a.ep)} to be paid</span></div>${ex||'<p class="mut">Nothing here in this period.</p>'}${S.pe=='b'?'':`<div class="row" style="margin-top:14px"><span class="mut">In hand after payouts</span><b>${fmt(a.rec-a.ep)}</b></div>`}</div>
-<div class="card"><h2>Needs your attention</h2>${A.map(x=>`<div class="row"><div><b>${x.p.b}</b><div class="s ${x.n<0?'red':'mut'}">${x.t}, ${x.s}</div></div><button class="btn p" data-dr="${x.p.id}:${x.k}">${x.k=='pay'?C.fu:'Draft'}</button></div>`).join('')||'<p class="mut" style="margin-top:8px">All clear.</p>'}</div>
+<div class="card"><div class="sp" data-tv="*" style="cursor:pointer"><h2>${C.out}</h2><span class="mut s">${fmt(a.et-a.ep)} to be paid ›</span></div>${ex||'<p class="mut">Nothing here in this period.</p>'}${S.pe=='b'?'':`<div class="row" style="margin-top:14px"><span class="mut">In hand after payouts</span><b>${fmt(a.rec-a.ep)}</b></div>`}</div>
+<div class="card"><h2>Needs your attention</h2>${A.map(x=>`<div class="row"><div><b>${x.p.b}</b><div class="s ${x.n<0?'red':'mut'}">${x.t}, ${x.s}</div></div><button class="btn p" ${S.pe=='b'&&x.k=='pay'?`data-pn="pj|${x.p.id}"`:`data-dr="${x.p.id}:${x.k}"`}>${S.pe=='b'&&x.k=='pay'?'Pay now':x.k=='pay'?C.fu:'Draft'}</button></div>`).join('')||'<p class="mut" style="margin-top:8px">All clear.</p>'}</div>
 <p class="mut s" style="margin:16px 4px">Sample data. Figures cover only the projects you have recorded.</p>`}
 const lk=(a,t)=>a&&a.length?`<div class="acts" style="align-items:center;margin-bottom:12px"><span class="mut s">${t}</span>${a.map(f=>`<a class="dc" href="${f.u}" target="_blank" rel="noopener">${f.n}</a>`).join('')}</div>`:'';
 const att=p=>(p.inv?`<div class="s" style="margin-bottom:${p.inv.files.length?6:12}px"><span class="mut">Invoice</span> ${p.inv.no} for ${fmt(p.inv.amt)}, ${S.pe=='b'?'received':'raised'} ${dm(p.inv.date)}</div>`:'')+lk(p.inv&&p.inv.files,'Invoice file')+lk(p.docs,'Contract');
@@ -221,7 +221,7 @@ const st=p.x?'<span class="tag g">Closed</span>':b==0?'<span class="tag y">Paid 
 return `<div class="card"><div class="sp"><div><b class="t">${p.b}</b><div class="mut s">${p.t?p.t+', ':''}${p.c}</div></div>${st}</div>
 <div class="sp" style="margin:16px 0 8px"><span>${fmt(p.rec)} <span class="mut">${C.rw}</span></span><span class="mut">${fmt(p.fee)}</span></div><div class="bar sm"><i style="width:${p.rec/p.fee*100}%;background:var(--grn)"></i></div>
 <div class="meta"><div><span>Payment</span>${b>0?fmt(b)+' due '+dm(p.due):'Settled'+(p.paid?' on '+dm(p.paid):'')}</div><div><span>Deliverable</span>${p.dv?'Delivered':'Due '+dm(p.dl)}</div></div>
-${att(p)}<div class="acts">${p.x?`<button class="btn" data-ro="${p.id}">Reopen project</button>`:(b==0?`<button class="btn p" data-cl="${p.id}">Close project</button>`:`<button class="btn p" data-dr="${p.id}:pay">${C.fu}</button><button class="btn" data-rc="${p.id}">${C.mk}</button>`)+(p.dv?'':`<button class="btn" data-dr="${p.id}:work">${C.sw}</button>`)+`<button class="btn" data-iv="${p.id}">${p.inv?'Edit invoice':C.si}</button><button class="btn" data-ed="${p.id}">Edit</button>`}<button class="btn dl" data-dl="${p.id}">${S.del==p.id?'Tap again to delete':'Delete'}</button></div></div>`}
+${att(p)}<div class="acts">${p.x?`<button class="btn" data-ro="${p.id}">Reopen project</button>`:(b==0?`<button class="btn p" data-cl="${p.id}">Close project</button>`:`${S.pe=='b'?`<button class="btn p" data-pn="pj|${p.id}">Pay now</button>`:''}<button class="btn${S.pe=='b'?'':' p'}" data-dr="${p.id}:pay">${C.fu}</button><button class="btn" data-rc="${p.id}">${C.mk}</button>`)+(p.dv?'':`<button class="btn" data-dr="${p.id}:work">${C.sw}</button>`)+`<button class="btn" data-iv="${p.id}">${p.inv?'Edit invoice':C.si}</button><button class="btn" data-ed="${p.id}">Edit</button>`}<button class="btn dl" data-dl="${p.id}">${S.del==p.id?'Tap again to delete':'Delete'}</button></div></div>`}
 function proj(){const L=P.filter(p=>S.pf=='c'?p.x:!p.x).sort((a,b)=>a.due<b.due?-1:1);
 return seg([['a','Active'],['c','Closed']],'pf',S.pf)+(L.map(pc).join('')||'<p class="mut" style="margin-top:24px">Nothing here yet. Closed projects land here.</p>')}
 function ana(){const C=PC[S.pe],L=inPer(),ds=P.map(p=>{const b=bal(p);return{p,d:p.paid&&b==0?Math.round((D(p.paid)-D(p.due))/day):b>0&&p.due<TS?-diff(p.due):null}}).filter(x=>x.d!==null&&L.includes(x.p));
@@ -231,10 +231,10 @@ return `${perSeg()}
 <div class="g2" style="margin-top:12px"><div class="card"><div class="mut s">Projects</div><div class="big">${L.length}</div><div class="mut s">${L.filter(p=>p.x).length} closed</div></div><div class="card"><div class="mut s">Average delay</div><div class="big">${av}</div><div class="mut s">days after due date</div></div></div>
 <div class="card"><div class="sp"><h2>Month over month</h2><span class="s" style="color:var(--grn)">${C.rw[0].toUpperCase()+C.rw.slice(1)} ${ch<0?'down':'up'} ${Math.abs(ch)}% on Sep</span></div><div class="mom">${M.map(([,n],i)=>`<div><div class="cols"><i style="height:${ag[i]/mx*100}%;background:var(--ln)"></i><i style="height:${rc[i]/mx*100}%;background:var(--gold)"></i></div><span class="mut s">${n}</span></div>`).join('')}</div><p class="mut s" style="margin-top:12px">Grey is ${C.of}, ${C.cn} is ${C.rw}, by month the project started.</p></div>
 <div class="card"><div class="sp"><h2>Payment delays by ${C.dby}</h2><span class="mut s">${ot} on time</span></div>${ds.sort((a,b)=>b.d-a.d).map(x=>{const lt=x.p.rec<x.p.fee;return `<div class="r2"><div class="sp"><span>${x.p.b}</span><span class="s ${lt?'red':'mut'}">${x.d>0?x.d+(lt?' days overdue':' days late'):x.d==0?'On the day':-x.d+' days early'}</span></div><div class="bar sm"><i style="width:${Math.min(Math.max(x.d,0)/20*100,100)}%;background:${lt?'var(--red)':'var(--gold)'}"></i></div></div>`}).join('')||'<p class="mut" style="margin-top:8px">No payments have fallen due in this period.</p>'}</div>
-<div class="card dash"><b>Turnaround time</b><p class="s" style="margin-top:4px">Appears once you have closed a few projects with delivery dates.</p></div>`}
-function render(){$('#v').innerHTML=S.tab=='d'?dash():S.tab=='p'?proj():ana();
-$('#tb').innerHTML=[['d','Dashboard'],['p','Projects'],['a','Analytics']].map(([k,n])=>`<button data-tab="${k}" class="${S.tab==k?'on':''}">${n}</button>`).join('');
-skin();$('#pm').innerHTML=`<span class="av">${PC[S.pe].n[0]}</span>${PC[S.pe].n.split(' ')[0]} ▾`;$('#mn').innerHTML=Object.entries(PC).map(([k,c])=>`<button data-pe="${k}"><span>${c.n}</span><span class="mut s">${k==S.pe?'Viewing':''}</span></button>`).join('');
+<div class="card"><h2>Turnaround time</h2><div class="g2" style="margin-top:12px">${tats(L).map((v,i)=>`<div><div class="big">${v===null?'–':v}</div><div class="mut s">${['days, kickoff to deliverable due','days, kickoff to payment'][i]}</div></div>`).join('')}</div></div>`}
+function render(){$('#v').innerHTML=S.tab=='d'?dash():S.tab=='t'?team():S.tab=='p'?proj():ana();
+$('#tb').innerHTML=[['d','Dashboard'],['p','Projects'],['a','Analytics']].map(([k,n])=>`<button data-tab="${k}" class="${S.tab==k||(k=='d'&&S.tab=='t')?'on':''}">${n}</button>`).join('');
+skin();$('#np').textContent=S.tab=='a'?'Export':'New project';$('#pm').innerHTML=`<span class="av">${PC[S.pe].n[0]}</span>${PC[S.pe].n.split(' ')[0]}`;
 
 if(S.tab=='d'){const e=$('#cnt'),v=+e.dataset.v,s=performance.now();(function f(t){const k=Math.min((t-s)/700,1);e.textContent=fmt(v*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}}
 function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('o');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('o'),2400)}
@@ -273,13 +273,14 @@ const readImg=(f,cb)=>{const r=new FileReader();r.onload=()=>{const i=new Image(
 const applyTh=()=>{const r=document.documentElement;ST.th=='a'?(T0?r.setAttribute('data-theme',T0):r.removeAttribute('data-theme')):r.setAttribute('data-theme',ST.th=='d'?'dark':'light')};
 const FAQ=[['What is the difference between received and to collect?','Received is money already in your account. To collect is agreed but not paid yet, and overdue is the part past its due date.'],['How do I close a project?','Once a project is paid in full, tap Close project on its card. If you close one by mistake, tap Reopen project to get it back.'],['How do I add a contract or an invoice?','Tap Edit on a project to attach a contract as a PDF or image. Use the invoice button on the card to record an invoice and draft the message to send with it.'],['Why do my totals look low?','Totals cover only the projects you have recorded, for the period picked at the top.'],['Can I delete a project?','Yes. Tap Delete on its card, then tap again to confirm.']];
 function openDr(){setAv($('#dav'));$('#dn').textContent=U.n;$('#dm').textContent=U.em;$('#dv').textContent='Viewing as '+PC[S.pe].n.toLowerCase();
-$('#dl2').innerHTML=[['pf','Profile'],['set','Settings'],['help','Help centre'],['ct','Contact us'],['iss','Raise an issue']].map(([k,n])=>`<button class="mi" data-pg="${k}"><span>${n}</span><span class="mut">›</span></button>`).join('');$('#dr').classList.add('o');$('#bd').classList.add('o')}
-function openPg(k){let b='';const h=`<div class="sp"><h2>${{pf:'Profile',set:'Settings',help:'Help centre',ct:'Contact us',iss:'Raise an issue'}[k]}</h2><button class="btn" data-x>Close</button></div>`;
+$('#dl2').innerHTML=`<div class="s mut" style="padding:4px 12px">Switch view</div>`+Object.entries(PC).map(([k,c])=>`<button class="mi" data-pe="${k}"><span><i class="dot" style="background:${c.col||'#94690A'}"></i>${c.n}</span><span class="mut s">${k==S.pe?'Viewing':''}</span></button>`).join('')+`<div style="border-top:1px solid var(--ln);margin:8px 0"></div>`+[['pf','Profile'],['act','Payment activity'],['set','Settings'],['help','Help centre'],['ct','Contact us'],['iss','Raise an issue']].map(([k,n])=>`<button class="mi" data-pg="${k}"><span>${n}</span><span class="mut">›</span></button>`).join('');$('#dr').classList.add('o');$('#bd').classList.add('o')}
+function openPg(k){let b='';const h=`<div class="sp"><h2>${{pf:'Profile',set:'Settings',help:'Help centre',ct:'Contact us',iss:'Raise an issue',act:'Payment activity'}[k]}</h2><button class="btn" data-x>Close</button></div>`;
 if(k=='pf')b=`<div class="sp" style="justify-content:flex-start;gap:16px;margin:16px 0 4px"><div class="ava lg" id="pav" style="margin:0"></div><label class="btn">Change photo<input id="pfi" type="file" accept="image/*" hidden></label></div><label class="fl">Full name<input id="qn" autocomplete="off"></label><label class="fl">Email<input id="qe" type="email" autocomplete="off"></label><label class="fl">Phone<input id="qp" type="tel" placeholder="+91" autocomplete="off"></label><label class="fl">Business or channel name<input id="qb" autocomplete="off"></label><div class="er" id="pge"></div><button class="btn p" id="pgs" style="width:100%;padding:13px">Save profile</button>`;
 if(k=='set')b=`<div class="mut s" style="margin:16px 0 6px">Appearance</div>${seg([['a','Auto'],['d','Dark'],['l','Light']],'th',ST.th)}<div class="row" style="margin-top:12px"><span>Sound</span><button class="btn" id="snd">${S.snd?'On':'Off'}</button></div><div class="row"><span>Payment reminders</span><button class="btn" data-tg="r1">${ST.r1?'On':'Off'}</button></div><div class="row"><span>Deliverable reminders</span><button class="btn" data-tg="r2">${ST.r2?'On':'Off'}</button></div><div class="row"><span>Currency</span><span class="mut">Indian rupee (₹)</span></div><div class="row"><span>Financial year</span><span class="mut">April to March</span></div><p class="mut s" style="margin-top:14px">Reminders and currency are placeholders in this prototype.</p>`;
 if(k=='help')b=`<p class="mut s" style="margin:8px 0 6px">Quick answers about how Rumi works.</p>${FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}<div class="acts" style="margin-top:16px"><button class="btn" data-pg="ct">Contact us</button><button class="btn" data-pg="iss">Raise an issue</button></div>`;
 if(k=='ct')b=`<p class="mut s" style="margin:8px 0">Placeholder details until support is set up.</p><div class="row"><div><b>Email</b><div class="mut s">support@rumi.example</div></div><a class="btn p" href="mailto:support@rumi.example">Write to us</a></div><div class="row"><div><b>Something wrong in the app?</b><div class="mut s">Tell us what happened</div></div><button class="btn" data-pg="iss">Raise an issue</button></div>`;
 if(k=='iss')b=`<label class="fl">What is this about<select id="ic"><option>Wrong figure</option><option>Something is broken</option><option>Feature request</option><option>Other</option></select></label><label class="fl">Project (optional)<select id="ij"><option value="">None</option>${P.map(p=>`<option>${esc(p.b+', '+p.c)}</option>`).join('')}</select></label><label class="fl">Summary<input id="is1" placeholder="One line" autocomplete="off"></label><label class="fl">Details<textarea id="id1" rows="4"></textarea></label><label class="fl">Screenshot (optional)<input id="if1" type="file" accept="image/*"></label><div class="er" id="ie2"></div><button class="btn p" id="iss" style="width:100%;padding:13px">Submit issue</button>`;
+if(k=='act')b=PAYLOG.length?PAYLOG.map((e,i)=>`<div class="row"><div><b>${esc(e.who)}</b><div class="mut s">${fmt(e.amt)} via ${e.app}, ${e.at}${e.utr?', ref '+esc(e.utr):''}</div></div>${e.st=='Started'?`<button class="btn p" data-pc="${i}">Confirm</button>`:`<span class="tag ${e.st=='Paid'?'g':'r'}">${e.st}</span>`}</div>`).join(''):'<p class="mut" style="margin-top:14px">No payments yet. Payments you start with Pay now are logged here.</p>';
 $('#pg').innerHTML=h+b;if(k=='pf'){setAv($('#pav'));$('#qn').value=U.n;$('#qe').value=U.em;$('#qp').value=U.ph;$('#qb').value=U.bz}
 $('#dr').classList.remove('o');$('#pg').classList.add('o');$('#bd').classList.add('o')}
 function saveProf(){const v=i=>$('#'+i).value.trim();if(!v('qn'))return $('#pge').textContent='Add your name.';if(!v('qe').includes('@'))return $('#pge').textContent='Enter a valid email.';U.n=v('qn');U.em=v('qe');U.ph=v('qp');U.bz=v('qb');closeSh();toast('Profile saved')}
@@ -287,6 +288,72 @@ function sendIss(){const v=i=>$('#'+i).value.trim();if(!v('is1'))return $('#ie2'
 $('#pg').innerHTML=`<div class="sp"><h2>Issue logged</h2><button class="btn" data-x>Close</button></div><p style="margin:14px 0 4px"><b>${n}</b></p><p class="mut">${esc(v('ic'))}: ${esc(v('is1'))}</p><p class="mut s" style="margin-top:12px">This is a prototype, so nothing has been sent.</p><div class="acts" style="margin-top:16px"><button class="btn" data-pg="iss">Raise another</button></div>`}
 function logout(){closeSh();$('#lge').value=U.em;$('#lgp').value='';$('#lgr').textContent='';$('#lg').classList.add('o')}
 function login(){const e=$('#lge').value.trim();if(!e.includes('@'))return $('#lgr').textContent='Enter a valid email.';if(!$('#lgp').value)return $('#lgr').textContent='Enter your password.';U.em=e;$('#lg').classList.remove('o');toast('Welcome back, '+U.n)}
+const PAYLOG=[],UPI={};let PY=null,pn=0;
+const enc=encodeURIComponent,ph=s=>s.split(',')[0];
+function lines(){const o=[];inPer().forEach(p=>{if(S.pe=='b')o.push({k:p.t,who:p.b,sub:p.t+', '+p.c,p,i:-1,amt:p.fee,paid:p.rec});else p.e.forEach(([w,a,q],i)=>o.push({k:w,who:w,sub:p.b+', '+p.c,p,i,amt:a,paid:q}))});return o}
+const owed=({p,i})=>i>=0?p.e[i][1]-p.e[i][2]:bal(p);
+function refsOf(v){const[a,x,y]=v.split('|');
+if(a=='pj'){const p=P.find(q=>q.id==x);return{who:p.b,note:p.c,refs:[{p,i:-1}]}}
+if(a=='l'){const p=P.find(q=>q.id==x),i=+y;return{who:i>=0?p.e[i][0]:p.b,note:p.c,refs:[{p,i}]}}
+const ls=lines().filter(l=>l.k==x&&l.amt>l.paid);return{who:x,note:ls.length+' payment'+(ls.length>1?'s':''),refs:ls.map(l=>({p:l.p,i:l.i}))}}
+function team(){const C=PC[S.pe],all=lines(),L=(S.tf?all.filter(l=>l.k==S.tf):all).sort((a,b)=>((b.amt>b.paid)-(a.amt>a.paid))||(a.p.due<b.p.due?-1:1)),tot=L.reduce((s,l)=>s+l.amt,0),pd=L.reduce((s,l)=>s+l.paid,0);
+return `<div class="sp" style="margin-top:4px"><button class="btn" data-tab="d">‹ Dashboard</button>${S.tf?`<span class="dc">${esc(S.tf)}<button data-tv="*" aria-label="Show all">×</button></span>`:''}</div>
+<h2 style="font-size:22px;margin:16px 0 4px">${C.out}</h2>${perSeg()}
+<div class="card"><div class="mut s">To be paid in ${R[S.per][0]}</div><div class="big">${fmt(tot-pd)}</div><div class="mut s">${fmt(pd)} paid of ${fmt(tot)}</div><div class="bar" style="margin-top:16px"><i style="width:${tot?pd/tot*100:0}%;background:var(--grn)"></i></div></div>
+${L.map(l=>{const r=l.amt-l.paid,od=r>0&&l.p.due<TS;return `<div class="card"><div class="sp"><div><b class="t">${l.who}</b><div class="mut s">${l.sub}</div></div><span class="tag ${r==0?'g':od?'r':''}">${r==0?'Paid':od?'Overdue':l.paid?'Part paid':'To pay'}</span></div>
+<div class="sp" style="margin:16px 0 8px"><span>${fmt(l.paid)} <span class="mut">paid</span></span><span class="mut">${fmt(l.amt)}</span></div><div class="bar sm"><i style="width:${l.amt?l.paid/l.amt*100:0}%;background:var(--grn)"></i></div>
+<div class="meta"><div><span>To be paid</span>${r?fmt(r)+' by '+dm(l.p.due):'Settled'}</div><div><span>Project</span>${l.p.c}</div></div>
+<div class="acts">${r>0?`<button class="btn p" data-pn="l|${l.p.id}|${l.i}">Pay now</button><button class="btn" data-mp="${l.p.id}|${l.i}">Mark paid</button>`:''}</div></div>`}).join('')||'<p class="mut" style="margin-top:24px">Nothing here in this period.</p>'}`}
+function openPay(v){const t=refsOf(v),o=t.refs.reduce((s,r)=>s+owed(r),0);PY={...t,o,entry:null};
+$('#pg').innerHTML=`<div class="sp"><h2>Pay now</h2><button class="btn" data-x>Close</button></div><p class="mut s" style="margin:8px 0 0">${esc(t.who)}, ${esc(t.note)}</p>
+<label class="fl">Amount (₹)<input id="pya" type="number" inputmode="numeric" min="1" max="${o}" value="${o}"></label><label class="fl">UPI ID of ${esc(ph(t.who))}<input id="pyu" placeholder="name@bank" autocomplete="off"></label><div class="er" id="pye"></div>
+<div class="mut s">Pay with</div><div class="acts" style="margin-top:8px">${[['gpay','Google Pay'],['phonepe','PhonePe'],['paytm','Paytm'],['upi','Any UPI app']].map(([k,n])=>`<a class="btn${k=='upi'?' p':''}" href="#" data-up="${k}">${n}</a>`).join('')}</div>
+<p class="mut s" style="margin-top:14px">Rumi sends you to the payment app and records that you started the payment. You confirm the result when you come back. If an app does not open, use Any UPI app.</p>`;
+$('#pyu').value=UPI[t.who]||'';$('#dr').classList.remove('o');$('#pg').classList.add('o');$('#bd').classList.add('o')}
+function payUrl(app,amt,upi,ref){const q=`pa=${enc(upi)}&pn=${enc(ph(PY.who))}&am=${amt.toFixed(2)}&cu=INR&tn=${enc(PY.note)}&tr=${ref}`,ios=/iPhone|iPad|iPod/.test(navigator.userAgent);return({gpay:ios?'gpay://upi/pay?':'tez://upi/pay?',phonepe:'phonepe://pay?',paytm:'paytmmp://pay?',upi:'upi://pay?'}[app])+q}
+function payConfirm(){const en=PY&&PY.entry;if(!en)return;$('#pg').innerHTML=`<div class="sp"><h2>Did it go through?</h2><button class="btn" data-x>Close</button></div><p class="mut" style="margin:10px 0">${fmt(en.amt)} to ${esc(ph(en.who))} via ${en.app}, reference ${en.id}.</p><label class="fl">Bank reference (UTR), optional<input id="pyr" autocomplete="off"></label><div class="acts" style="margin-top:14px"><button class="btn p" id="pyy">Yes, I paid</button><button class="btn" id="pyn">It failed</button></div><p class="mut s" style="margin-top:12px">If you close this, the payment stays marked as started. Confirm it later from Payment activity in the side panel.</p>`;$('#pg').classList.add('o');$('#bd').classList.add('o')}
+function payDone(ok){const en=PY.entry;en.st=ok?'Paid':'Failed';if(ok){en.utr=($('#pyr').value||'').trim();let rem=en.amt;en.refs.forEach(({p,i})=>{const d=Math.min(rem,owed({p,i}));if(d>0){i>=0?p.e[i][2]+=d:(p.rec+=d,p.rec>=p.fee&&(p.paid=TS));rem-=d}})}closeSh();render();toast(ok?'Payment recorded':'Marked as failed')}
+const dys=(x,y)=>Math.round((D(y)-D(x))/day),av1=a=>a.length?Math.round(a.reduce((s,v)=>s+v,0)/a.length*10)/10:null,cap=s=>s[0].toUpperCase()+s.slice(1);
+function tats(L){return[av1(L.map(p=>dys(p.d,p.dl))),av1(L.filter(p=>p.paid&&bal(p)==0).map(p=>dys(p.d,p.paid)))]}
+const MS=[['2026-06','Jun'],['2026-07','Jul'],['2026-08','Aug'],['2026-09','Sep'],['2026-10','Oct']];
+function expData(){const C=PC[S.pe],L=inPer(),a=agg(),[ta,tp]=tats(L),
+ds=P.map(p=>{const b=bal(p);return{p,d:p.paid&&b==0?dys(p.due,p.paid):b>0&&p.due<TS?-diff(p.due):null}}).filter(x=>x.d!==null&&L.includes(x.p)).sort((x,y)=>y.d-x.d),
+iv=L.map(p=>p.inv?p.inv.amt:p.fee),cl={};L.forEach(p=>cl[p.b]=(cl[p.b]||0)+p.fee);
+const top=Object.entries(cl).sort((x,y)=>y[1]-x[1])[0],R0=R[S.per][0];
+const sum=[['View',C.n],['Period',R0],['Projects',L.length],['Closed projects',L.filter(p=>p.x).length],['Total '+C.of+' (₹)',a.fee],[cap(C.rw)+' (₹)',a.rec],[C.lg[1]+' (₹)',a.tc],['Overdue (₹)',a.od],['Average project value (₹)',L.length?Math.round(a.fee/L.length):null],['Average invoice value (₹)',iv.length?Math.round(iv.reduce((s,v)=>s+v,0)/iv.length):null],['Invoices recorded',L.filter(p=>p.inv).length],['Average payment delay (days)',ds.length?av1(ds.map(x=>Math.max(0,x.d))):null],['On-time payment rate (%)',ds.length?Math.round(ds.filter(x=>x.d<=0).length/ds.length*100):null],['Average turnaround, kickoff to deliverable due (days)',ta],['Average kickoff to payment (days)',tp],['Largest '+C.dby+' share of '+C.of,top&&a.fee?top[0]+', '+Math.round(top[1]/a.fee*100)+'%':null]];
+const mo=MS.map(([k,n])=>{const f=P.filter(p=>p.d.startsWith(k));return[n,f.reduce((s,p)=>s+p.fee,0),f.reduce((s,p)=>s+p.rec,0)]});
+const pr=L.map(p=>{const b=bal(p),x=ds.find(q=>q.p==p);return[p.b,p.t||'',p.c,p.d,p.fee,p.rec,b,p.due,p.x?'Closed':b==0?'Paid in full':p.due<TS?'Overdue':'Active',x?x.d:null]});
+const tm=S.pe=='b'?Object.entries(a.ex).map(([w,[t,q]])=>[w,'All engagements',t,q,t-q]):lines().map(l=>[l.who,l.p.b+', '+l.p.c,l.amt,l.paid,l.amt-l.paid]);
+return{C,R0,sum,mo,ds:ds.map(x=>[x.p.b,x.p.c,x.d,x.p.rec<x.p.fee?'Unpaid':'Paid']),pr,tm,tmh:S.pe=='b'?'Vendor type':'Person'}}
+function buildXlsx(X,d){const wb=X.utils.book_new(),add=(n,rows,w)=>{const ws=X.utils.aoa_to_sheet(rows);ws['!cols']=w.map(v=>({wch:v}));X.utils.book_append_sheet(wb,ws,n)},rw=cap(d.C.rw)+' (₹)';
+add('Summary',[['Rumi analytics'],[d.C.n+' view, '+d.R0],[],['Measure','Value'],...d.sum.map(r=>[r[0],r[1]??'-'])],[52,34]);
+add('Projects',[['Name','Type','Project','Kickoff','Agreed (₹)',rw,'Outstanding (₹)','Payment due','Status','Delay (days)'],...d.pr.map(r=>r.map(v=>v??''))],[22,12,30,12,13,13,16,13,14,12]);
+add('Monthly',[['Month','Agreed (₹)',rw],...d.mo],[10,14,14]);
+add('Delays',[[cap(d.C.dby),'Project','Days late (negative is early)','State'],...d.ds],[22,30,28,10]);
+add('Team',[[d.tmh,'Project','Total (₹)','Paid (₹)','To be paid (₹)'],...d.tm],[24,36,12,12,14]);
+return new Blob([X.write(wb,{bookType:'xlsx',type:'array'})],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})}
+function buildPdf(J,d){const doc=new J({unit:'pt',format:'a4'}),W=doc.internal.pageSize.getWidth(),H=doc.internal.pageSize.getHeight(),m=40;let y=m;
+const rs=n=>n===null||n===undefined||n===''?'-':typeof n=='number'?n.toLocaleString('en-IN'):String(n),mon=n=>n===null||n===undefined?'-':'Rs '+Math.round(n).toLocaleString('en-IN'),rw=cap(d.C.rw);
+const tx=(s,sz,b,g)=>{if(y+sz>H-m){doc.addPage();y=m}doc.setFont('helvetica',b?'bold':'normal');doc.setFontSize(sz);doc.setTextColor(g||20);doc.text(String(s),m,y+sz);y+=sz+8};
+const tb=(head,rows,w,r)=>{const row=(c,b)=>{if(y+16>H-m){doc.addPage();y=m}doc.setFont('helvetica',b?'bold':'normal');doc.setFontSize(8.5);doc.setTextColor(b?20:70);let x=m;c.forEach((v,i)=>{const t=doc.splitTextToSize(String(v),w[i]-8)[0]||'';r[i]?doc.text(t,x+w[i]-4,y+11,{align:'right'}):doc.text(t,x+4,y+11);x+=w[i]});doc.setDrawColor(b?60:225);doc.line(m,y+16,W-m,y+16);y+=16};row(head,1);rows.forEach(c=>row(c,0));y+=14};
+tx('rumi',26,1);tx('Analytics report',13,0,90);tx(d.C.n+' view, '+d.R0+'. Generated '+D(TS).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+'.',9,0,110);y+=6;
+tx('Summary',12,1);tb(['Measure','Value'],d.sum.map(([k,v])=>[k.replace('(₹)','(Rs)'),k.includes('₹')?mon(v):rs(v)]),[330,185],[0,1]);
+tx('Month over month',12,1);tb(['Month','Agreed (Rs)',rw+' (Rs)'],d.mo.map(r=>[r[0],mon(r[1]),mon(r[2])]),[175,170,170],[0,1,1]);
+if(d.ds.length){tx('Payment delays by '+d.C.dby,12,1);tb([cap(d.C.dby),'Project','Timing','State'],d.ds.map(r=>[r[0],r[1],r[2]>0?r[2]+' days late':r[2]==0?'On the day':-r[2]+' days early',r[3]]),[130,205,100,80],[0,0,1,0])}
+tx('Projects',12,1);tb(['Name','Project','Agreed',rw,'Outstanding','Due','Status'],d.pr.map(r=>[r[0],r[2],mon(r[4]),mon(r[5]),mon(r[6]),dm(r[7]),r[8]]),[85,120,62,62,66,52,68],[0,0,1,1,1,0,0]);
+if(d.tm.length){tx(d.C.out,12,1);tb([d.tmh,'Project','Total','Paid','To be paid'],d.tm.map(r=>[r[0],r[1],mon(r[2]),mon(r[3]),mon(r[4])]),[125,170,70,70,80],[0,0,1,1,1])}
+tx('Figures cover only the projects recorded in Rumi. Sample data in this prototype.',8,0,120);
+return new Blob([doc.output('arraybuffer')],{type:'application/pdf'})}
+const lib=(u,k)=>window[k]?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement('script');s.src=u;s.onload=ok;s.onerror=()=>no(new Error('load'));document.head.appendChild(s)});
+async function saveFile(name,blob){let dl=null;try{dl=window.claude&&await window.claude.use('downloads')}catch(e){}
+if(dl){try{await dl.save({filename:name,data:blob});toast('Saved '+name)}catch(e){if(!e||e.code!='declined')toast('Could not save the file')}return}
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('Downloaded '+name)}
+async function doExp(f){toast('Preparing your file');try{const d=expData(),nm='rumi-analytics-'+PC[S.pe].n.split(' ')[0].toLowerCase()+'-'+R[S.per][0].replace(/[^\w]+/g,'-')+'.'+f;let b;
+if(f=='pdf'){await lib('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js','jspdf');b=buildPdf(window.jspdf.jsPDF,d)}else{await lib('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','XLSX');b=buildXlsx(window.XLSX,d)}
+await saveFile(nm,b)}catch(e){toast('Could not create the file. Check your connection and try again.')}}
+function openExp(){const d=expData(),k=[2,8,9,13,11,12].map(i=>d.sum[i]);
+$('#pg').innerHTML=`<div class="sp"><h2>Export analytics</h2><button class="btn" data-x>Close</button></div><p class="mut s" style="margin:8px 0 4px">Exports what you are looking at: ${d.C.n} view, ${d.R0}. To export a different period, change it on the Analytics tab first.</p>${k.map(([a,v])=>`<div class="row"><span class="mut">${a}</span><b>${v===null?'-':typeof v=='number'&&a.includes('₹')?fmt(v):v}</b></div>`).join('')}<div class="acts" style="margin-top:18px"><button class="btn p" data-ex="pdf">Download PDF</button><button class="btn" data-ex="xlsx">Download Excel</button></div><p class="mut s" style="margin-top:12px">Both files include the summary, month over month, payment delays, every project and the team payouts.</p>`;
+$('#dr').classList.remove('o');$('#pg').classList.add('o');$('#bd').classList.add('o')}
 let AC;function chime(){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;
 const n=(f,s,d,g,ty)=>{const o=AC.createOscillator(),v=AC.createGain();o.type=ty||'triangle';o.frequency.value=f;v.gain.setValueAtTime(0,t+s);v.gain.linearRampToValueAtTime(g,t+s+.02);v.gain.exponentialRampToValueAtTime(.0001,t+s+d);o.connect(v);v.connect(AC.destination);o.start(t+s);o.stop(t+s+d+.05)};
 const o=AC.createOscillator(),v=AC.createGain();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(45,t+.35);v.gain.setValueAtTime(.35,t);v.gain.exponentialRampToValueAtTime(.0001,t+.4);o.connect(v);v.connect(AC.destination);o.start(t);o.stop(t+.45);
@@ -300,17 +367,25 @@ $('#cs').textContent=p.b+' is paid in full'+(lt>0?', '+lt+' days after the due d
 $('#cs2').textContent=Math.round((T-D(p.d))/day)+' days from kickoff to close';
 e.classList.add('go');chime();burst();navigator.vibrate&&navigator.vibrate([20,60,20,60,40]);
 const a=$('#ca'),s=performance.now()+1150;(function f(t){const k=Math.min(Math.max((t-s)/900,0),1);a.textContent=fmt(p.fee*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(performance.now())}
-document.addEventListener('click',e=>{const t=e.target.closest('button,[data-x]');
-if(!e.target.closest('.pw'))$('#mn').classList.remove('o');
+document.addEventListener('click',e=>{const ua=e.target.closest('[data-up]');
+if(ua){const amt=+$('#pya').value,upi=$('#pyu').value.trim(),er=m=>{e.preventDefault();$('#pye').textContent=m};
+if(!(amt>0&&amt<=PY.o))return er('Enter an amount up to '+fmt(PY.o)+'.');if(!/^[\w.-]{2,}@[a-z]{2,}$/i.test(upi))return er('Enter a valid UPI ID, like name@bank.');
+UPI[PY.who]=upi;const en={id:'PAY-'+(++pn),who:PY.who,amt,app:ua.textContent,at:dm(TS),st:'Started',utr:'',refs:PY.refs};PAYLOG.unshift(en);PY.entry=en;ua.href=payUrl(ua.dataset.up,amt,upi,en.id);setTimeout(payConfirm,500);return}
+const t=e.target.closest('button,[data-x],[data-tv]');
 if(!t)return;const d=t.dataset;
-if(t.id=='pm')return $('#mn').classList.toggle('o');
+if(t.id=='pm')return openDr();
 if(t.id=='snd'){S.snd=!S.snd;return openPg('set')}
 if(t.id=='cp'){const x=$('#tx');x.select();try{navigator.clipboard.writeText(x.value).catch(()=>document.execCommand('copy'))}catch(_){document.execCommand('copy')}return toast('Message copied')}
-if(t.id=='np')return openFm();if(t.id=='fs')return saveFm();if(t.id=='iS')return saveIv();if(t.id=='cd'){$('#cele').classList.remove('go');S.tab='p';S.pf='c';return render()}
+if(t.id=='np')return S.tab=='a'?openExp():openFm();if(t.id=='fs')return saveFm();if(t.id=='iS')return saveIv();if(t.id=='cd'){$('#cele').classList.remove('go');S.tab='p';S.pf='c';return render()}
 if(d.x!==undefined)return closeSh();
-if(t.id=='mb')return openDr();if(t.id=='lo')return logout();if(t.id=='pgs')return saveProf();if(t.id=='iss')return sendIss();if(t.id=='lgb')return login();
+if(t.id=='lo')return logout();if(t.id=='pgs')return saveProf();if(t.id=='iss')return sendIss();if(t.id=='lgb')return login();if(t.id=='pyy')return payDone(1);if(t.id=='pyn')return payDone(0);
 if(d.pg)return openPg(d.pg);if(d.th){ST.th=d.th;applyTh();return openPg('set')}if(d.tg){ST[d.tg]=ST[d.tg]?0:1;return openPg('set')}
 if(d.pe)return setPe(d.pe);
+if(d.tv){S.tf=d.tv=='*'?'':d.tv;S.tab='t';scrollTo(0,0);return render()}
+if(d.ex)return doExp(d.ex);
+if(d.pn)return openPay(d.pn);
+if(d.pc!==undefined){PY={entry:PAYLOG[+d.pc]};return payConfirm()}
+if(d.mp){const[a,b]=d.mp.split('|'),p=P.find(q=>q.id==a);+b>=0?p.e[+b][2]=p.e[+b][1]:(p.rec=p.fee,p.paid=TS);toast('Marked as paid');return render()}
 if(d.k){S.per=d.k}else if(d.tab){S.tab=d.tab;scrollTo(0,0)}else if(d.pf){S.pf=d.pf}
 else if(d.dr){const[i,k]=d.dr.split(':');return openSh(i,k)}
 else if(d.tone){sh.tone=d.tone;document.querySelectorAll('#tn button').forEach(b=>b.classList.toggle('on',b.dataset.tone==d.tone));return setMsg()}

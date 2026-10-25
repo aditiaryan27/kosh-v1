@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Creator Finance (prototype)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Dancing+Script:wght@600&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#0A0A0C;--s1:#131317;--s2:#1C1C22;--ln:#272730;--tx:#F3F0E8;--mut:#8F8D98;--gold:#94690A;--ac:#B07F12;--grn:#1F8559;--red:#C23B2E;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light;--bg:#F5F2EA;--s1:#FFF;--s2:#EEE9DE;--ln:#E1DBCD;--tx:#17161A;--mut:#6E6B75;--gold:#6F4F05;--ac:#B07F12;--grn:#12935F;--red:#D2402E;--on:#fff}}
+:root[data-theme="light"]{color-scheme:light;--bg:#F5F2EA;--s1:#FFF;--s2:#EEE9DE;--ln:#E1DBCD;--tx:#17161A;--mut:#6E6B75;--gold:#6F4F05;--ac:#B07F12;--grn:#12935F;--red:#D2402E;--on:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:600 14px/1.45 Manrope,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button,a{font:inherit;color:inherit;text-decoration:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg)}
+.in{max-width:480px;margin:auto;padding:0 18px}
+header .in{display:flex;justify-content:space-between;align-items:center;height:56px}
+.pw{position:relative}
+.chip{display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid var(--ln);border-radius:99px;padding:5px 12px 5px 5px;cursor:pointer}
+.av{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--on);display:grid;place-items:center;font-weight:800;font-size:12px}
+.menu{display:none;position:absolute;top:44px;left:0;width:230px;background:var(--s1);border:1px solid var(--ln);border-radius:16px;padding:6px;box-shadow:0 18px 40px #0007}
+.menu.o{display:block}
+.menu button{display:flex;justify-content:space-between;width:100%;background:none;border:0;padding:10px;border-radius:10px;cursor:pointer;text-align:left}
+.menu button:hover{background:var(--s2)}
+.app{padding-bottom:100px}
+.mut{color:var(--mut)}.s{font-size:12px}.sp{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card{background:var(--s1);border:1px solid var(--ln);border-radius:20px;padding:18px;margin-top:12px}
+.big{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.seg{display:flex;background:var(--s1);border:1px solid var(--ln);border-radius:99px;padding:3px;margin-top:6px}
+.seg button{flex:1;border:0;background:none;padding:8px;border-radius:99px;cursor:pointer;color:var(--mut)}
+.seg .on{background:var(--tx);color:var(--bg)}
+.bar{display:flex;gap:2px;height:10px;border-radius:9px;overflow:hidden;background:var(--s2)}
+.bar.sm{height:6px}.bar i{display:block;transition:width .6s}
+.leg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.leg div{display:flex;flex-direction:column;font-size:12px;color:var(--mut)}
+.leg b{color:var(--tx);font-size:14px;margin-top:2px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+h2{font-size:16px;font-weight:800}
+.r2{margin-top:14px}.r2 .bar{margin:6px 0 4px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--ln)}
+.red{color:var(--red)}
+.btn{border:1px solid var(--ln);background:var(--s2);border-radius:99px;padding:8px 14px;font-size:12px;cursor:pointer;white-space:nowrap}
+.btn.p{background:var(--gold);color:var(--on);border-color:var(--gold);font-weight:800}
+.tag{font-size:11px;padding:3px 9px;border-radius:99px;border:1px solid var(--ln);color:var(--mut)}
+.tag.g{color:var(--grn);border-color:var(--grn)}.tag.y{color:var(--tx);border-color:var(--gold)}.tag.r{color:var(--red);border-color:var(--red)}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.meta span{display:block;font-size:11px;color:var(--mut);font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.t{font-size:17px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g2 .card{margin-top:0}.g2 .big{font-size:30px}
+.mom{display:flex;gap:10px;margin-top:14px}.mom>div{flex:1;text-align:center}
+.cols{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:110px;margin-bottom:6px}
+.cols i{display:block;width:10px;border-radius:4px 4px 0 0;min-height:2px}
+.dash{border-style:dashed;color:var(--mut)}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--ln);padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px))}
+.tabs .in{display:flex;gap:6px}
+.tabs button{flex:1;border:0;background:none;padding:10px 0;color:var(--mut);cursor:pointer;border-radius:12px;position:relative}
+.tabs .on{color:var(--tx)}.tabs .on::after{content:"";position:absolute;left:50%;bottom:2px;width:5px;height:5px;margin-left:-2px;border-radius:50%;background:var(--gold)}
+#bd{position:fixed;inset:0;z-index:20;background:#000a;opacity:0;pointer-events:none;transition:.3s}
+#bd.o{opacity:1;pointer-events:auto}
+#sh,#fm,#iv,#pg{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:480px;margin:auto;background:var(--s1);border:1px solid var(--ln);border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#sh.o,#fm.o,#iv.o,#pg.o{transform:none}
+#fm,#iv,#pg{max-height:92vh;overflow:auto}
+.fl{display:block;margin-top:12px;font-size:12px;color:var(--mut)}
+.fl input,.fl select,.fl textarea,.fg3 input{display:block;width:100%;margin-top:6px;background:var(--s2);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:11px 12px;font:600 14px Manrope,system-ui,sans-serif}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.er{color:var(--red);font-size:12px;margin:10px 0;min-height:16px}
+.fg3{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;margin-top:8px}.fg3 input{margin-top:0;font-size:13px;padding:10px}
+.dc{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);border-radius:99px;padding:5px 11px;font-size:12px;color:var(--tx);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dc button{border:0;background:none;color:var(--mut);cursor:pointer;padding:0 0 0 2px;font-size:14px}
+.btn.dl{color:var(--red);border-color:transparent;background:none}
+#sp{position:fixed;inset:0;z-index:100;background:#000;display:grid;place-items:center;transition:opacity .7s;cursor:pointer}
+#sp.out{opacity:0;pointer-events:none}
+#sp span{display:inline-block;font:600 84px/1.3 'Dancing Script',cursive;color:#fff;padding:0 14px;animation:wr 1.5s .3s cubic-bezier(.5,0,.2,1) both}
+@keyframes wr{from{clip-path:inset(0 100% 0 0);opacity:.3}to{clip-path:inset(0 0 0 0);opacity:1}}
+@media(prefers-reduced-motion:reduce){#sp span{animation:none}}
+.fl textarea{resize:none}
+.btn.ic{padding:9px 11px;display:grid;place-items:center}
+#dr{position:fixed;top:0;bottom:0;left:0;width:min(320px,86vw);z-index:22;background:var(--s1);border-right:1px solid var(--ln);padding:calc(26px + env(safe-area-inset-top,0px)) 8px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;transform:translateX(-105%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#dr.o{transform:none}
+.dh{padding:0 12px 18px;border-bottom:1px solid var(--ln);margin-bottom:8px}
+.ava{width:64px;height:64px;border-radius:50%;background:var(--gold) center/cover;color:var(--on);display:grid;place-items:center;font-weight:800;font-size:26px;margin-bottom:12px}
+.ava.lg{width:72px;height:72px}
+.mi{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:none;padding:14px 12px;border-radius:12px;cursor:pointer;text-align:left}
+.mi:hover{background:var(--s2)}.mi.out{color:var(--red);margin-top:auto}
+details{border-top:1px solid var(--ln);padding:12px 0}summary{cursor:pointer;font-weight:800}details p{color:var(--mut);margin-top:8px;font-weight:600}
+#lg{--s2:#1C1C22;--ln:#272730;--tx:#F3F0E8;--mut:#8F8D98;--red:#E0483A;position:fixed;inset:0;z-index:90;background:#000;color:#F3F0E8;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+#lg.o{display:flex}
+.wm{font:600 64px/1.3 'Dancing Script',cursive;color:#fff;margin-bottom:20px}.lgc{width:100%;max-width:340px}
+#sh textarea{width:100%;margin:12px 0;background:var(--s2);color:var(--tx);border:1px solid var(--ln);border-radius:14px;padding:12px;font:500 14px/1.5 Manrope,system-ui,sans-serif;resize:none}
+#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:99px;opacity:0;transition:.3s;z-index:60;pointer-events:none;max-width:90%;text-align:center}
+#toast.o{opacity:1;transform:translate(-50%,0)}
+#cele{position:fixed;inset:0;z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;color:#F3F0E8;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--ac,#E7B24A) 26%,#0A0A0C) 0%,#0A0A0C 65%)}
+#cele.go{display:flex;animation:fi .5s}
+#cele canvas{position:absolute;inset:0;pointer-events:none}
+.ring{position:absolute;top:40%;left:50%;width:120px;height:120px;margin:-60px;border:2px solid var(--ac,#E7B24A);border-radius:50%;opacity:0}
+.go .ring{animation:rg 1.8s ease-out forwards}.go .ring:nth-of-type(2){animation-delay:.25s}.go .ring:nth-of-type(3){animation-delay:.5s}
+.ck{position:relative;width:120px;height:120px;margin-bottom:26px}
+.ck circle,.ck path{fill:none;stroke:var(--ac,#E7B24A);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:290;stroke-dashoffset:290}
+.go .ck circle{animation:dr .9s .15s ease-out forwards}.go .ck path{animation:dr .5s .85s ease-out forwards}
+.go .ck{animation:pop .5s 1.2s}
+#cele h1{font-size:34px;font-weight:800;letter-spacing:-.02em;opacity:0}
+#cele .am{font-size:48px;font-weight:800;color:var(--ac,#E7B24A);margin:6px 0;font-variant-numeric:tabular-nums;opacity:0}
+#cele p{color:#B9B5AA;opacity:0}
+#cele .btn{margin-top:30px;opacity:0;background:#F3F0E8;color:#0A0A0C;border-color:#F3F0E8;position:relative}
+.go h1{animation:up .6s 1s forwards}.go .am{animation:up .6s 1.15s forwards}.go p{animation:up .6s 1.4s forwards}.go .btn{animation:up .6s 1.9s forwards}
+@keyframes fi{from{opacity:0}}@keyframes dr{to{stroke-dashoffset:0}}@keyframes rg{0%{transform:scale(.4);opacity:.9}100%{transform:scale(4);opacity:0}}
+@keyframes pop{50%{transform:scale(1.12)}}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.go *,#cele.go{animation-duration:.01s!important;animation-delay:0s!important}}
+</style></head>
+<body>
+<div id="sp"><span>rumi</span></div>
+<header><div class="in"><div class="sp" style="gap:10px"><button class="btn ic" id="mb" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></button><div class="pw"><button class="chip" id="pm"><span class="av">C</span>Creator ▾</button><div class="menu" id="mn"></div></div></div><div class="sp" style="gap:8px"><button class="btn p" id="np">New project</button></div></div></header>
+<main class="in app" id="v"></main>
+<nav class="tabs"><div class="in" id="tb"></div></nav>
+<div id="bd" data-x></div>
+<aside id="dr"><div class="dh"><div class="ava" id="dav"></div><b class="t" id="dn"></b><div class="mut s" id="dm"></div><div class="tag" id="dv" style="display:inline-block;margin-top:10px"></div></div><div id="dl2"></div><button class="mi out" id="lo"><span>Log out</span></button></aside>
+<div id="pg"></div>
+<div id="lg"><span class="wm">rumi</span><div class="lgc"><label class="fl">Email<input id="lge" type="email" autocomplete="off"></label><label class="fl">Password<input id="lgp" type="password"></label><div class="er" id="lgr"></div><button class="btn p" id="lgb" style="width:100%;padding:13px">Log in</button><p class="mut s" style="margin-top:12px;text-align:center">Prototype: any email and password will work.</p></div></div>
+<div id="sh"><div class="sp"><h2 id="sht"></h2><button class="btn" data-x>Close</button></div><div class="seg" id="tn"></div><textarea id="tx" rows="8"></textarea><div class="sp"><a class="btn" id="wa" target="_blank" rel="noopener">Open in WhatsApp</a><button class="btn p" id="cp">Copy message</button></div></div>
+<div id="fm"><div class="sp"><h2 id="fht">New project</h2><button class="btn" data-x>Close</button></div>
+<label class="fl"><span id="flb">Client name</span><input id="fb" placeholder="e.g. Nykaa" autocomplete="off"></label>
+<label class="fl" id="ftl"><span>Type</span><select id="ft"></select></label>
+<label class="fl">Campaign or deliverable<input id="fc" placeholder="e.g. Festive reel series" autocomplete="off"></label>
+<div class="fg"><label class="fl"><span id="fla">Agreed fee (₹)</span><input id="ff" type="number" inputmode="numeric" min="0"></label><label class="fl"><span id="flr">Received so far (₹)</span><input id="fa" type="number" inputmode="numeric" min="0" placeholder="0"></label></div>
+<div class="fg"><label class="fl">Kickoff date<input id="fd" type="date"></label><label class="fl">Deliverable due<input id="fv" type="date"></label></div>
+<label class="fl">Payment due<input id="fp" type="date"></label>
+<div id="fcb"><div class="fl" style="margin-top:14px" id="flc">Collaborators (optional): what you pay and what is paid so far</div>
+<div class="fg3"><input id="fw" list="cl" placeholder="Name, role" autocomplete="off"><input id="fx" type="number" inputmode="numeric" min="0" placeholder="Fee ₹"><input id="fy" type="number" inputmode="numeric" min="0" placeholder="Paid ₹"></div>
+<div class="fg3"><input id="fw2" list="cl" placeholder="Name, role" autocomplete="off"><input id="fx2" type="number" inputmode="numeric" min="0" placeholder="Fee ₹"><input id="fy2" type="number" inputmode="numeric" min="0" placeholder="Paid ₹"></div>
+</div><label class="fl" style="display:flex;align-items:center;gap:10px"><input id="fdv" type="checkbox" style="width:18px;height:18px;margin:0;padding:0">Deliverable already delivered</label>
+<label class="fl">Contract or agreement (PDF or images)<input id="fk" type="file" accept=".pdf,image/*" multiple></label><div id="fkl" class="acts" style="margin-top:8px"></div>
+<datalist id="cl"><option value="Rohan, editor"><option value="Meera, videographer"></datalist>
+<div class="er" id="fe"></div><button class="btn p" id="fs" style="width:100%;padding:13px">Create project</button></div>
+<div id="iv"><div class="sp"><h2 id="ivt">Submit invoice</h2><button class="btn" data-x>Close</button></div>
+<p class="mut s" id="ivs" style="margin-top:4px"></p>
+<label class="fl">Invoice number<input id="iN" autocomplete="off"></label>
+<div class="fg"><label class="fl">Invoice date<input id="iD" type="date"></label><label class="fl">Invoice amount (₹)<input id="iA" type="number" inputmode="numeric" min="0"></label></div>
+<label class="fl">Payment due<input id="iP" type="date"></label>
+<label class="fl">Invoice file (PDF or image)<input id="iF" type="file" accept=".pdf,image/*"></label><div id="iFL" class="acts" style="margin-top:8px"></div>
+<div class="er" id="iE"></div><button class="btn p" id="iS" style="width:100%;padding:13px">Save invoice and draft message</button></div>
+<div id="cele"><canvas id="cv"></canvas><i class="ring"></i><i class="ring"></i><i class="ring"></i>
+<svg class="ck" viewBox="0 0 120 120"><circle cx="60" cy="60" r="46"/><path d="M38 61l15 15 29-32"/></svg>
+<h1>Project closed</h1><div class="am" id="ca"></div><p id="cs"></p><p id="cs2"></p><button class="btn" id="cd">Back to projects</button></div>
+<div id="toast"></div>
+<script>
+const TS='2026-10-24',D=s=>new Date(s+'T00:00:00'),T=D(TS),day=864e5;
+const fmt=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const dm=s=>D(s).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+const diff=s=>Math.round((D(s)-T)/day);
+const $=s=>document.querySelector(s);
+const DB={c:[
+{id:1,b:'Nykaa',c:'Festive reel series',fee:120000,rec:60000,due:'2026-10-28',d:'2026-10-05',dl:'2026-10-27',dv:false,e:[['Rohan, editor',18000,9000],['Meera, videographer',12000,12000]]},
+{id:2,b:'boAt',c:'Launch video',fee:85000,rec:0,due:'2026-10-15',d:'2026-10-02',dl:'2026-10-10',dv:true,e:[['Rohan, editor',9000,9000]]},
+{id:3,b:'Mamaearth',c:'Skincare sponsored post',fee:60000,rec:60000,due:'2026-10-18',paid:'2026-10-20',d:'2026-10-01',dl:'2026-10-12',dv:true,e:[['Rohan, editor',6000,6000]]},
+{id:4,b:'Zepto',c:'Quick-commerce reel',fee:45000,rec:0,due:'2026-11-05',d:'2026-10-20',dl:'2026-10-30',dv:false,e:[['Rohan, editor',9000,0]]},
+{id:5,b:'Lenskart',c:'Eyewear collection shoot',fee:95000,rec:47500,due:'2026-11-10',d:'2026-10-22',dl:'2026-11-02',dv:false,e:[['Meera, videographer',15000,0]]},
+{id:6,b:'Cult.fit',c:'Fitness challenge',fee:75000,rec:75000,due:'2026-09-20',paid:'2026-09-27',d:'2026-09-01',dl:'2026-09-12',dv:true,x:1,e:[['Rohan, editor',9000,9000]]},
+{id:7,b:'Myntra',c:'End of reason sale',fee:110000,rec:110000,due:'2026-08-25',paid:'2026-08-22',d:'2026-08-01',dl:'2026-08-12',dv:true,x:1,e:[['Rohan, editor',9000,9000],['Meera, videographer',14000,14000]]},
+{id:8,b:'Mivi',c:'Earbuds review',fee:50000,rec:50000,due:'2026-06-20',paid:'2026-07-04',d:'2026-06-05',dl:'2026-06-14',dv:true,x:1,e:[['Rohan, editor',9000,9000]]}],
+e:[
+{id:1,b:'Aarav Vlogs',t:'Creator',c:'Weekly vlog edits, October',fee:36000,rec:18000,due:'2026-10-30',d:'2026-10-01',dl:'2026-10-28',dv:false,e:[['Karan, assistant editor',6000,3000]]},
+{id:2,b:'Nykaa',t:'Brand',c:'Festive reel cutdowns',fee:54000,rec:0,due:'2026-10-12',d:'2026-10-04',dl:'2026-10-09',dv:true,e:[['Stock music licence',3000,3000]]},
+{id:3,b:'Spark Media',t:'Agency',c:'Product film, 3 versions',fee:72000,rec:72000,due:'2026-10-20',paid:'2026-10-21',d:'2026-10-03',dl:'2026-10-15',dv:true,e:[['Neha, colourist',9000,9000]]},
+{id:4,b:'Mira Cooks',t:'Creator',c:'Recipe series, 6 episodes',fee:48000,rec:0,due:'2026-11-08',d:'2026-10-18',dl:'2026-11-01',dv:false,e:[]},
+{id:5,b:'Zepto',t:'Brand',c:'Quick-commerce ads',fee:40000,rec:40000,due:'2026-09-25',paid:'2026-09-24',d:'2026-09-08',dl:'2026-09-18',dv:true,x:1,e:[]},
+{id:6,b:'Spark Media',t:'Agency',c:'Launch teaser',fee:60000,rec:60000,due:'2026-08-30',paid:'2026-09-06',d:'2026-08-10',dl:'2026-08-22',dv:true,x:1,e:[['Neha, colourist',8000,8000]]},
+{id:7,b:'Aarav Vlogs',t:'Creator',c:'September vlog edits',fee:36000,rec:36000,due:'2026-09-30',paid:'2026-09-29',d:'2026-09-01',dl:'2026-09-27',dv:true,x:1,e:[['Karan, assistant editor',6000,6000]]}],
+a:[
+{id:1,b:'Nykaa',t:'Brand',c:'Festive campaign, 4 creators',fee:480000,rec:240000,due:'2026-10-30',d:'2026-10-03',dl:'2026-10-26',dv:false,e:[['Aarav Vlogs, creator',90000,45000],['Mira Cooks, creator',80000,80000],['Sana Beauty, creator',75000,0],['Rohan, editor',40000,20000]]},
+{id:2,b:'Mamaearth',t:'Brand',c:'Skincare launch, 3 creators',fee:300000,rec:0,due:'2026-10-14',d:'2026-10-06',dl:'2026-10-10',dv:true,e:[['Aarav Vlogs, creator',70000,70000],['Sana Beauty, creator',65000,65000],['Rohan, editor',30000,30000]]},
+{id:3,b:'Aarav Vlogs',t:'Creator',c:'Channel growth retainer, October',fee:120000,rec:120000,due:'2026-10-10',paid:'2026-10-09',d:'2026-10-01',dl:'2026-10-25',dv:true,e:[['Ishita, thumbnail designer',15000,15000]]},
+{id:4,b:'Cult.fit',t:'Brand',c:'Fitness challenge, 2 creators',fee:220000,rec:110000,due:'2026-11-12',d:'2026-10-21',dl:'2026-11-05',dv:false,e:[['Mira Cooks, creator',60000,0],['Karan Fit, creator',55000,0]]},
+{id:5,b:'Myntra',t:'Brand',c:'End of reason sale, 2 creators',fee:280000,rec:280000,due:'2026-08-20',paid:'2026-08-18',d:'2026-08-01',dl:'2026-08-12',dv:true,x:1,e:[['Aarav Vlogs, creator',60000,60000],['Mira Cooks, creator',55000,55000]]},
+{id:6,b:'boAt',t:'Brand',c:'Audio launch',fee:350000,rec:350000,due:'2026-09-15',paid:'2026-09-22',d:'2026-08-28',dl:'2026-09-05',dv:true,x:1,e:[['Karan Fit, creator',80000,80000]]},
+{id:7,b:'Sana Beauty',t:'Creator',c:'Monetisation plan',fee:90000,rec:90000,due:'2026-06-30',paid:'2026-06-28',d:'2026-06-01',dl:'2026-06-20',dv:true,x:1,e:[]}],
+b:[
+{id:1,b:'Ogilvy India',t:'Agency',c:'Diwali Glow campaign',fee:600000,rec:300000,due:'2026-10-28',d:'2026-10-02',dl:'2026-10-26',dv:false,e:[]},
+{id:2,b:'Aarav Vlogs',t:'Creator',c:'Diwali Glow reels',fee:90000,rec:0,due:'2026-10-16',d:'2026-10-06',dl:'2026-10-14',dv:true,e:[]},
+{id:3,b:'Mira Cooks',t:'Creator',c:'Festive recipe integration',fee:80000,rec:80000,due:'2026-10-18',paid:'2026-10-17',d:'2026-10-08',dl:'2026-10-12',dv:true,e:[]},
+{id:4,b:'Rohan Edits',t:'Editor',c:'Hero film final cut',fee:45000,rec:22500,due:'2026-11-02',d:'2026-10-12',dl:'2026-10-30',dv:false,e:[]},
+{id:5,b:'Sana Beauty',t:'Creator',c:'Launch unboxing',fee:70000,rec:0,due:'2026-11-10',d:'2026-10-22',dl:'2026-11-04',dv:false,e:[]},
+{id:6,b:'Spark Media',t:'Agency',c:'Summer sale campaign',fee:400000,rec:400000,due:'2026-08-30',paid:'2026-09-02',d:'2026-08-05',dl:'2026-08-25',dv:true,x:1,e:[]},
+{id:7,b:'Rohan Edits',t:'Editor',c:'Summer sale cutdowns',fee:35000,rec:35000,due:'2026-09-05',paid:'2026-09-04',d:'2026-08-12',dl:'2026-08-30',dv:true,x:1,e:[]},
+{id:8,b:'Aarav Vlogs',t:'Creator',c:'Summer sale reels',fee:85000,rec:85000,due:'2026-09-10',paid:'2026-09-15',d:'2026-08-15',dl:'2026-09-01',dv:true,x:1,e:[]}]};
+let P=DB.c;
+const R={M:['Oct 2026','2026-10-01','2026-10-31'],Q:['Q3 FY27','2026-10-01','2026-12-31'],Y:['FY 2026–27','2026-04-01','2027-03-31']};
+const B={hl:'Received in',of:'agreed',lg:['Received','To collect','Overdue'],rw:'received',mk:'Mark received',fu:'Follow up',sw:'Submit work',si:'Submit invoice',fb:'Client name',fa:'Agreed fee (₹)',fr:'Received so far (₹)',ty:[]},mk=o=>Object.assign({},B,o);
+const PC={
+c:mk({n:'Creator',cn:'ochre',dby:'brand',out:'Paid to your team',fc:'Collaborators (optional): what you pay and what is paid so far'}),
+e:mk({n:'Editor or videographer',col:'#28459E',cn:'navy',dby:'client',out:'Your costs',fc:'Your costs (optional): fee and paid so far',ty:['Creator','Brand','Agency']}),
+a:mk({n:'Agency',col:'#522CAD',cn:'deep violet',dby:'client',hl:'Received from clients in',of:'agreed with clients',out:'Paid to creators and editors',fa:'Agreed with client (₹)',fc:'Creators and editors you pay (optional): fee and paid so far',ty:['Brand','Creator']}),
+b:mk({n:'Brand',col:'#961B48',cn:'wine',dby:'vendor',hl:'Paid out in',of:'committed',lg:['Paid','To pay','Overdue'],out:'Spend by vendor type',rw:'paid',mk:'Mark paid',fu:'Message vendor',sw:'Ask for update',si:'Log invoice',fb:'Vendor name',fa:'Agreed amount (₹)',fr:'Paid so far (₹)',fc:'',ty:['Agency','Creator','Editor']})};
+function skin(){const c=PC[S.pe],r=document.documentElement.style;if(c.col){r.setProperty('--gold',c.col);r.setProperty('--ac',c.col);r.setProperty('--on','#fff')}else['--gold','--ac','--on'].forEach(k=>r.removeProperty(k))}
+function setPe(k){S.pe=k;P=DB[k];S.tab='d';S.per='M';S.pf='a';S.del=0;$('#mn').classList.remove('o');scrollTo(0,0);render()}
+const S={tab:'d',per:'M',pf:'a',snd:1,pe:'c',del:0};let sh={};
+const bal=p=>p.fee-p.rec,inPer=()=>{const[,a,b]=R[S.per];return P.filter(p=>p.d>=a&&p.d<=b)};
+const seg=(a,k,cur)=>`<div class="seg">${a.map(([v,n])=>`<button data-${k}="${v}" class="${cur==v?'on':''}">${n}</button>`).join('')}</div>`;
+const perSeg=()=>seg([['M','Month'],['Q','Quarter'],['Y','Year']],'k',S.per);
+function agg(){const L=inPer();let fee=0,rec=0,od=0,et=0,ep=0,ex={};
+L.forEach(p=>{fee+=p.fee;rec+=p.rec;if(bal(p)>0&&p.due<TS)od+=bal(p);(S.pe=='b'?[[p.t,p.fee,p.rec]]:p.e).forEach(([w,a,q])=>{ex[w]=ex[w]||[0,0];ex[w][0]+=a;ex[w][1]+=q;et+=a;ep+=q})});
+return{L,fee,rec,od,tc:fee-rec-od,ex,et,ep}}
+const lg=(n,v,c)=>`<div><span><i class="dot" style="background:var(${c})"></i>${n}</span><b>${fmt(v)}</b></div>`;
+function attn(){const o=[];P.filter(p=>!p.x).forEach(p=>{const b=bal(p);
+if(b>0){const n=diff(p.due);if(n<=7)o.push({p,k:'pay',n,t:n<0?'Overdue by '+(-n)+' days':n==0?'Due today':'Due in '+n+' days',s:fmt(b)})}
+if(!p.dv){const n=diff(p.dl);if(n<=7)o.push({p,k:'work',n,t:n<0?'Deliverable is late':'Deliverable due in '+n+' days',s:S.pe=='b'?'ask for an update':'send for approval'})}});
+return o.sort((x,y)=>x.n-y.n).slice(0,4)}
+function dash(){const C=PC[S.pe],a=agg(),pc=x=>a.fee?x/a.fee*100:0,A=attn();
+const ex=Object.entries(a.ex).map(([w,[t,q]])=>`<div class="r2"><div class="sp"><span>${w}</span><span class="mut s">${fmt(q)} of ${fmt(t)}</span></div><div class="bar sm"><i style="width:${t?q/t*100:0}%;background:var(--grn)"></i></div>${t>q?`<div class="mut s">${fmt(t-q)} to be paid</div>`:'<div class="s" style="color:var(--grn)">All paid</div>'}</div>`).join('');
+return `${perSeg()}
+<div class="card"><div class="mut s">${C.hl} ${R[S.per][0]}</div><div class="big" id="cnt" data-v="${a.rec}">${fmt(a.rec)}</div><div class="mut s">of ${fmt(a.fee)} ${C.of}</div>
+<div class="bar" style="margin:18px 0 14px"><i style="width:${pc(a.rec)}%;background:var(--grn)"></i><i style="width:${pc(a.tc)}%;background:var(--gold)"></i><i style="width:${pc(a.od)}%;background:var(--red)"></i></div>
+<div class="leg">${lg(C.lg[0],a.rec,'--grn')}${lg(C.lg[1],a.tc,'--gold')}${lg(C.lg[2],a.od,'--red')}</div></div>
+<div class="card"><div class="sp"><h2>${C.out}</h2><span class="mut s">${fmt(a.et-a.ep)} to be paid</span></div>${ex||'<p class="mut">Nothing here in this period.</p>'}${S.pe=='b'?'':`<div class="row" style="margin-top:14px"><span class="mut">In hand after payouts</span><b>${fmt(a.rec-a.ep)}</b></div>`}</div>
+<div class="card"><h2>Needs your attention</h2>${A.map(x=>`<div class="row"><div><b>${x.p.b}</b><div class="s ${x.n<0?'red':'mut'}">${x.t}, ${x.s}</div></div><button class="btn p" data-dr="${x.p.id}:${x.k}">${x.k=='pay'?C.fu:'Draft'}</button></div>`).join('')||'<p class="mut" style="margin-top:8px">All clear.</p>'}</div>
+<p class="mut s" style="margin:16px 4px">Sample data. Figures cover only the projects you have recorded.</p>`}
+const lk=(a,t)=>a&&a.length?`<div class="acts" style="align-items:center;margin-bottom:12px"><span class="mut s">${t}</span>${a.map(f=>`<a class="dc" href="${f.u}" target="_blank" rel="noopener">${f.n}</a>`).join('')}</div>`:'';
+const att=p=>(p.inv?`<div class="s" style="margin-bottom:${p.inv.files.length?6:12}px"><span class="mut">Invoice</span> ${p.inv.no} for ${fmt(p.inv.amt)}, ${S.pe=='b'?'received':'raised'} ${dm(p.inv.date)}</div>`:'')+lk(p.inv&&p.inv.files,'Invoice file')+lk(p.docs,'Contract');
+function pc(p){const C=PC[S.pe],b=bal(p),n=diff(p.due),od=b>0&&n<0;
+const st=p.x?'<span class="tag g">Closed</span>':b==0?'<span class="tag y">Paid in full</span>':od?`<span class="tag r">${-n} days overdue</span>`:'<span class="tag">Active</span>';
+return `<div class="card"><div class="sp"><div><b class="t">${p.b}</b><div class="mut s">${p.t?p.t+', ':''}${p.c}</div></div>${st}</div>
+<div class="sp" style="margin:16px 0 8px"><span>${fmt(p.rec)} <span class="mut">${C.rw}</span></span><span class="mut">${fmt(p.fee)}</span></div><div class="bar sm"><i style="width:${p.rec/p.fee*100}%;background:var(--grn)"></i></div>
+<div class="meta"><div><span>Payment</span>${b>0?fmt(b)+' due '+dm(p.due):'Settled'+(p.paid?' on '+dm(p.paid):'')}</div><div><span>Deliverable</span>${p.dv?'Delivered':'Due '+dm(p.dl)}</div></div>
+${att(p)}<div class="acts">${p.x?`<button class="btn" data-ro="${p.id}">Reopen project</button>`:(b==0?`<button class="btn p" data-cl="${p.id}">Close project</button>`:`<button class="btn p" data-dr="${p.id}:pay">${C.fu}</button><button class="btn" data-rc="${p.id}">${C.mk}</button>`)+(p.dv?'':`<button class="btn" data-dr="${p.id}:work">${C.sw}</button>`)+`<button class="btn" data-iv="${p.id}">${p.inv?'Edit invoice':C.si}</button><button class="btn" data-ed="${p.id}">Edit</button>`}<button class="btn dl" data-dl="${p.id}">${S.del==p.id?'Tap again to delete':'Delete'}</button></div></div>`}
+function proj(){const L=P.filter(p=>S.pf=='c'?p.x:!p.x).sort((a,b)=>a.due<b.due?-1:1);
+return seg([['a','Active'],['c','Closed']],'pf',S.pf)+(L.map(pc).join('')||'<p class="mut" style="margin-top:24px">Nothing here yet. Closed projects land here.</p>')}
+function ana(){const C=PC[S.pe],L=inPer(),ds=P.map(p=>{const b=bal(p);return{p,d:p.paid&&b==0?Math.round((D(p.paid)-D(p.due))/day):b>0&&p.due<TS?-diff(p.due):null}}).filter(x=>x.d!==null&&L.includes(x.p));
+const av=ds.length?(ds.reduce((s,x)=>s+Math.max(0,x.d),0)/ds.length).toFixed(1).replace('.0',''):'–',ot=ds.length?Math.round(ds.filter(x=>x.d<=0).length/ds.length*100)+'%':'–';
+const M=[['2026-06','Jun'],['2026-07','Jul'],['2026-08','Aug'],['2026-09','Sep'],['2026-10','Oct']],f=(k,q)=>P.filter(p=>p.d.startsWith(k)).reduce((s,p)=>s+p[q],0),ag=M.map(([k])=>f(k,'fee')),rc=M.map(([k])=>f(k,'rec')),mx=Math.max(...ag,1),ch=rc[3]?Math.round((rc[4]/rc[3]-1)*100):0;
+return `${perSeg()}
+<div class="g2" style="margin-top:12px"><div class="card"><div class="mut s">Projects</div><div class="big">${L.length}</div><div class="mut s">${L.filter(p=>p.x).length} closed</div></div><div class="card"><div class="mut s">Average delay</div><div class="big">${av}</div><div class="mut s">days after due date</div></div></div>
+<div class="card"><div class="sp"><h2>Month over month</h2><span class="s" style="color:var(--grn)">${C.rw[0].toUpperCase()+C.rw.slice(1)} ${ch<0?'down':'up'} ${Math.abs(ch)}% on Sep</span></div><div class="mom">${M.map(([,n],i)=>`<div><div class="cols"><i style="height:${ag[i]/mx*100}%;background:var(--ln)"></i><i style="height:${rc[i]/mx*100}%;background:var(--gold)"></i></div><span class="mut s">${n}</span></div>`).join('')}</div><p class="mut s" style="margin-top:12px">Grey is ${C.of}, ${C.cn} is ${C.rw}, by month the project started.</p></div>
+<div class="card"><div class="sp"><h2>Payment delays by ${C.dby}</h2><span class="mut s">${ot} on time</span></div>${ds.sort((a,b)=>b.d-a.d).map(x=>{const lt=x.p.rec<x.p.fee;return `<div class="r2"><div class="sp"><span>${x.p.b}</span><span class="s ${lt?'red':'mut'}">${x.d>0?x.d+(lt?' days overdue':' days late'):x.d==0?'On the day':-x.d+' days early'}</span></div><div class="bar sm"><i style="width:${Math.min(Math.max(x.d,0)/20*100,100)}%;background:${lt?'var(--red)':'var(--gold)'}"></i></div></div>`}).join('')||'<p class="mut" style="margin-top:8px">No payments have fallen due in this period.</p>'}</div>
+<div class="card dash"><b>Turnaround time</b><p class="s" style="margin-top:4px">Appears once you have closed a few projects with delivery dates.</p></div>`}
+function render(){$('#v').innerHTML=S.tab=='d'?dash():S.tab=='p'?proj():ana();
+$('#tb').innerHTML=[['d','Dashboard'],['p','Projects'],['a','Analytics']].map(([k,n])=>`<button data-tab="${k}" class="${S.tab==k?'on':''}">${n}</button>`).join('');
+skin();$('#pm').innerHTML=`<span class="av">${PC[S.pe].n[0]}</span>${PC[S.pe].n.split(' ')[0]} ▾`;$('#mn').innerHTML=Object.entries(PC).map(([k,c])=>`<button data-pe="${k}"><span>${c.n}</span><span class="mut s">${k==S.pe?'Viewing':''}</span></button>`).join('');
+
+if(S.tab=='d'){const e=$('#cnt'),v=+e.dataset.v,s=performance.now();(function f(t){const k=Math.min((t-s)/700,1);e.textContent=fmt(v*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('o');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('o'),2400)}
+function msg(){const{p,k,tone}=sh;if(S.pe=='b')return k=='work'?`Hi team ${p.b}, checking in on the ${p.c} deliverable, due ${dm(p.dl)}. Could you share a status update or a draft for review?`:`Hi team ${p.b}, an update on the ${p.c} payment of ${fmt(bal(p))}, due ${dm(p.due)}. It is with our finance team and I will confirm the release date shortly. Please share the invoice if you have not already.`;if(k=='inv'){const i=p.inv;return `Hi team ${p.b}, please find attached invoice ${i.no} dated ${dm(i.date)} for ${fmt(i.amt)} against ${p.c}. Payment is due by ${dm(p.due)}. Please let me know if you need anything else to process it. Thank you!`}if(k=='work')return `Hi team ${p.b}, sharing the final cut for ${p.c}: [link]. Please review and share feedback or approval by [date]. Once it is approved I will mark the deliverable as done so we can close out the invoice. Thank you!`;
+const b=fmt(bal(p)),n=diff(p.due);
+return tone=='f'?`Hi team ${p.b}, hope the week is going well! A quick follow-up on the ${p.c} invoice. ${b} ${n<0?'was due on '+dm(p.due):'is due on '+dm(p.due)}. Could you share the expected payment date? Happy to resend the invoice if that helps. Thanks!`:`Hi team ${p.b}, the payment of ${b} for ${p.c} ${n<0?'was due on '+dm(p.due)+' and is now '+(-n)+' days overdue':'is due on '+dm(p.due)}. Please confirm the payment date by end of day tomorrow. The invoice is attached for reference.`}
+function setMsg(){$('#tx').value=msg();wa()}const wa=()=>$('#wa').href='https://wa.me/?text='+encodeURIComponent($('#tx').value);
+function openSh(id,k){sh={p:P.find(p=>p.id==id),k,tone:'f'};$('#sht').textContent=S.pe=='b'?'Message '+sh.p.b:k=='pay'?'Follow up with '+sh.p.b:k=='inv'?'Send invoice to '+sh.p.b:'Submit work to '+sh.p.b;
+$('#tn').innerHTML=k=='pay'?[['f','Friendly'],['s','Firm']].map(([v,n])=>`<button data-tone="${v}" class="${v=='f'?'on':''}">${n}</button>`).join(''):'';$('#tn').style.display=k=='pay'&&S.pe!='b'?'flex':'none';setMsg();$('#sh').classList.add('o');$('#bd').classList.add('o')}
+const closeSh=()=>{$('#sh').classList.remove('o');$('#fm').classList.remove('o');$('#iv').classList.remove('o');$('#pg').classList.remove('o');$('#dr').classList.remove('o');$('#bd').classList.remove('o')};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),add=n=>iso(new Date(T.getTime()+n*day));
+let ed=null,wd=[],wi=[],ip=null;
+const fileChips=(a,k)=>a.map((f,i)=>`<span class="dc">${f.n}<button data-rm="${k}:${i}" aria-label="Remove ${f.n}">×</button></span>`).join(''),chips=()=>$('#fkl').innerHTML=fileChips(wd,'d'),ichips=()=>$('#iFL').innerHTML=fileChips(wi,'i');
+function openFm(p){ed=p||null;wd=p?(p.docs||[]).slice():[];const set=(i,x)=>$('#'+i).value=x??'',C=PC[S.pe];$('#flb').textContent=C.fb;$('#fla').textContent=C.fa;$('#flr').textContent=C.fr;$('#flc').textContent=C.fc;$('#fcb').style.display=S.pe=='b'?'none':'';$('#ftl').style.display=C.ty.length?'':'none';$('#ft').innerHTML=C.ty.map(t=>`<option>${t}</option>`).join('');if(p&&p.t)$('#ft').value=p.t;
+set('fb',p&&p.b);set('fc',p&&p.c);set('ff',p&&p.fee);set('fa',p?p.rec:'');set('fd',p?p.d:TS);set('fv',p?p.dl:add(14));set('fp',p?p.due:add(30));
+['','2'].forEach((s,i)=>{const x=p&&p.e[i];set('fw'+s,x&&x[0]);set('fx'+s,x&&x[1]);set('fy'+s,x&&x[2])});
+$('#fdv').checked=!!(p&&p.dv);$('#fk').value='';chips();$('#fht').textContent=p?'Edit project':'New project';$('#fs').textContent=p?'Save changes':'Create project';$('#fe').textContent='';$('#fm').scrollTop=0;$('#fm').classList.add('o');$('#bd').classList.add('o')}
+function saveFm(){const v=i=>$('#'+i).value.trim(),b=v('fb'),fee=+v('ff'),adv=+v('fa')||0,er=m=>($('#fe').textContent=m,0),cs=['','2'].map(s=>[v('fw'+s),+v('fx'+s)||0,+v('fy'+s)||0]);
+if(!b)return er('Add the client name.');if(!(fee>0))return er('Enter the agreed fee.');if(adv<0||adv>fee)return er('Amount received cannot be more than the agreed fee.');
+if(!v('fd')||!v('fv')||!v('fp'))return er('Add all three dates.');if(v('fv')<v('fd')||v('fp')<v('fd'))return er('Due dates cannot be before the kickoff date.');
+for(const[w,x,y]of cs){if(!w&&(x||y))return er('Add the collaborator name.');if(w&&!x)return er('Add what you pay '+w+', or clear the collaborator.');if(y>x)return er('Paid to '+w+' cannot be more than their fee.')}
+const o={b,t:PC[S.pe].ty.length?$('#ft').value:undefined,c:v('fc')||'New project',fee,rec:adv,due:v('fp'),d:v('fd'),dl:v('fv'),dv:$('#fdv').checked,e:cs.filter(c=>c[0]).concat(ed?ed.e.slice(2):[]),docs:wd.slice(),paid:adv>=fee?((ed&&ed.paid)||TS):null},m=ed?' updated':' added to your projects';
+if(ed)Object.assign(ed,o);else P.push({id:Math.max(...P.map(p=>p.id))+1,...o});
+closeSh();S.tab='p';S.pf='a';render();scrollTo(0,0);toast(b+m)}
+function openIv(id){ip=P.find(p=>p.id==id);const v=ip.inv;wi=v?v.files.slice():[];
+$('#ivt').textContent=v?'Edit invoice':PC[S.pe].si;$('#iS').textContent=S.pe=='b'?'Save invoice':'Save invoice and draft message';$('#ivs').textContent=ip.b+', '+ip.c;
+$('#iN').value=v?v.no:'INV-2026-'+String(P.filter(p=>p.inv).length+15).padStart(3,'0');$('#iD').value=v?v.date:TS;$('#iA').value=v?v.amt:ip.fee;$('#iP').value=ip.due;$('#iF').value='';ichips();$('#iE').textContent='';
+$('#iv').classList.add('o');$('#bd').classList.add('o')}
+function saveIv(){const v=i=>$('#'+i).value.trim(),er=m=>($('#iE').textContent=m,0),a=+v('iA');
+if(!v('iN'))return er('Add the invoice number.');if(!(a>0))return er('Enter the invoice amount.');if(!v('iD')||!v('iP'))return er('Add the invoice date and the payment due date.');if(v('iP')<v('iD'))return er('Payment due cannot be before the invoice date.');
+ip.inv={no:v('iN'),date:v('iD'),amt:a,files:wi.slice()};ip.due=v('iP');const id=ip.id;closeSh();render();if(S.pe!='b')openSh(id,'inv');toast('Invoice '+ip.inv.no+' saved')}
+const U={n:'Aditi',em:'aditi@example.com',ph:'',bz:'',img:''},ST={th:'a',r1:1,r2:1},T0=document.documentElement.getAttribute('data-theme');let tk=1041;
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const setAv=e=>{e.style.backgroundImage=U.img?`url(${U.img})`:'none';e.textContent=U.img?'':(U.n||'?')[0].toUpperCase()};
+const readImg=(f,cb)=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const s=Math.min(1,256/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.85))};i.src=r.result};r.readAsDataURL(f)};
+const applyTh=()=>{const r=document.documentElement;ST.th=='a'?(T0?r.setAttribute('data-theme',T0):r.removeAttribute('data-theme')):r.setAttribute('data-theme',ST.th=='d'?'dark':'light')};
+const FAQ=[['What is the difference between received and to collect?','Received is money already in your account. To collect is agreed but not paid yet, and overdue is the part past its due date.'],['How do I close a project?','Once a project is paid in full, tap Close project on its card. If you close one by mistake, tap Reopen project to get it back.'],['How do I add a contract or an invoice?','Tap Edit on a project to attach a contract as a PDF or image. Use the invoice button on the card to record an invoice and draft the message to send with it.'],['Why do my totals look low?','Totals cover only the projects you have recorded, for the period picked at the top.'],['Can I delete a project?','Yes. Tap Delete on its card, then tap again to confirm.']];
+function openDr(){setAv($('#dav'));$('#dn').textContent=U.n;$('#dm').textContent=U.em;$('#dv').textContent='Viewing as '+PC[S.pe].n.toLowerCase();
+$('#dl2').innerHTML=[['pf','Profile'],['set','Settings'],['help','Help centre'],['ct','Contact us'],['iss','Raise an issue']].map(([k,n])=>`<button class="mi" data-pg="${k}"><span>${n}</span><span class="mut">›</span></button>`).join('');$('#dr').classList.add('o');$('#bd').classList.add('o')}
+function openPg(k){let b='';const h=`<div class="sp"><h2>${{pf:'Profile',set:'Settings',help:'Help centre',ct:'Contact us',iss:'Raise an issue'}[k]}</h2><button class="btn" data-x>Close</button></div>`;
+if(k=='pf')b=`<div class="sp" style="justify-content:flex-start;gap:16px;margin:16px 0 4px"><div class="ava lg" id="pav" style="margin:0"></div><label class="btn">Change photo<input id="pfi" type="file" accept="image/*" hidden></label></div><label class="fl">Full name<input id="qn" autocomplete="off"></label><label class="fl">Email<input id="qe" type="email" autocomplete="off"></label><label class="fl">Phone<input id="qp" type="tel" placeholder="+91" autocomplete="off"></label><label class="fl">Business or channel name<input id="qb" autocomplete="off"></label><div class="er" id="pge"></div><button class="btn p" id="pgs" style="width:100%;padding:13px">Save profile</button>`;
+if(k=='set')b=`<div class="mut s" style="margin:16px 0 6px">Appearance</div>${seg([['a','Auto'],['d','Dark'],['l','Light']],'th',ST.th)}<div class="row" style="margin-top:12px"><span>Sound</span><button class="btn" id="snd">${S.snd?'On':'Off'}</button></div><div class="row"><span>Payment reminders</span><button class="btn" data-tg="r1">${ST.r1?'On':'Off'}</button></div><div class="row"><span>Deliverable reminders</span><button class="btn" data-tg="r2">${ST.r2?'On':'Off'}</button></div><div class="row"><span>Currency</span><span class="mut">Indian rupee (₹)</span></div><div class="row"><span>Financial year</span><span class="mut">April to March</span></div><p class="mut s" style="margin-top:14px">Reminders and currency are placeholders in this prototype.</p>`;
+if(k=='help')b=`<p class="mut s" style="margin:8px 0 6px">Quick answers about how Rumi works.</p>${FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}<div class="acts" style="margin-top:16px"><button class="btn" data-pg="ct">Contact us</button><button class="btn" data-pg="iss">Raise an issue</button></div>`;
+if(k=='ct')b=`<p class="mut s" style="margin:8px 0">Placeholder details until support is set up.</p><div class="row"><div><b>Email</b><div class="mut s">support@rumi.example</div></div><a class="btn p" href="mailto:support@rumi.example">Write to us</a></div><div class="row"><div><b>Something wrong in the app?</b><div class="mut s">Tell us what happened</div></div><button class="btn" data-pg="iss">Raise an issue</button></div>`;
+if(k=='iss')b=`<label class="fl">What is this about<select id="ic"><option>Wrong figure</option><option>Something is broken</option><option>Feature request</option><option>Other</option></select></label><label class="fl">Project (optional)<select id="ij"><option value="">None</option>${P.map(p=>`<option>${esc(p.b+', '+p.c)}</option>`).join('')}</select></label><label class="fl">Summary<input id="is1" placeholder="One line" autocomplete="off"></label><label class="fl">Details<textarea id="id1" rows="4"></textarea></label><label class="fl">Screenshot (optional)<input id="if1" type="file" accept="image/*"></label><div class="er" id="ie2"></div><button class="btn p" id="iss" style="width:100%;padding:13px">Submit issue</button>`;
+$('#pg').innerHTML=h+b;if(k=='pf'){setAv($('#pav'));$('#qn').value=U.n;$('#qe').value=U.em;$('#qp').value=U.ph;$('#qb').value=U.bz}
+$('#dr').classList.remove('o');$('#pg').classList.add('o');$('#bd').classList.add('o')}
+function saveProf(){const v=i=>$('#'+i).value.trim();if(!v('qn'))return $('#pge').textContent='Add your name.';if(!v('qe').includes('@'))return $('#pge').textContent='Enter a valid email.';U.n=v('qn');U.em=v('qe');U.ph=v('qp');U.bz=v('qb');closeSh();toast('Profile saved')}
+function sendIss(){const v=i=>$('#'+i).value.trim();if(!v('is1'))return $('#ie2').textContent='Add a one-line summary.';if(!v('id1'))return $('#ie2').textContent='Describe what happened.';const n='RUMI-'+(++tk);
+$('#pg').innerHTML=`<div class="sp"><h2>Issue logged</h2><button class="btn" data-x>Close</button></div><p style="margin:14px 0 4px"><b>${n}</b></p><p class="mut">${esc(v('ic'))}: ${esc(v('is1'))}</p><p class="mut s" style="margin-top:12px">This is a prototype, so nothing has been sent.</p><div class="acts" style="margin-top:16px"><button class="btn" data-pg="iss">Raise another</button></div>`}
+function logout(){closeSh();$('#lge').value=U.em;$('#lgp').value='';$('#lgr').textContent='';$('#lg').classList.add('o')}
+function login(){const e=$('#lge').value.trim();if(!e.includes('@'))return $('#lgr').textContent='Enter a valid email.';if(!$('#lgp').value)return $('#lgr').textContent='Enter your password.';U.em=e;$('#lg').classList.remove('o');toast('Welcome back, '+U.n)}
+let AC;function chime(){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;
+const n=(f,s,d,g,ty)=>{const o=AC.createOscillator(),v=AC.createGain();o.type=ty||'triangle';o.frequency.value=f;v.gain.setValueAtTime(0,t+s);v.gain.linearRampToValueAtTime(g,t+s+.02);v.gain.exponentialRampToValueAtTime(.0001,t+s+d);o.connect(v);v.connect(AC.destination);o.start(t+s);o.stop(t+s+d+.05)};
+const o=AC.createOscillator(),v=AC.createGain();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(45,t+.35);v.gain.setValueAtTime(.35,t);v.gain.exponentialRampToValueAtTime(.0001,t+.4);o.connect(v);v.connect(AC.destination);o.start(t);o.stop(t+.45);
+[523.25,659.25,783.99,1046.5].forEach((f,i)=>n(f,.9+i*.1,1,.14));n(2093,1.3,1.8,.05,'sine');n(1568,1.4,2,.04,'sine')}catch(e){}}
+function burst(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const c=$('#cv'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const g=getComputedStyle(document.documentElement).getPropertyValue('--ac').trim()||'#E7B24A',cl=[g,g,'#F3F0E8','#2FA06F'];
+const ps=Array.from({length:120},()=>{const a=Math.random()*6.283,v=3+Math.random()*9;return{x:c.width/2,y:c.height*.4,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,s:2+Math.random()*4,c:cl[Math.random()*4|0],l:1}});let f=0;
+setTimeout(function t(){x.clearRect(0,0,c.width,c.height);ps.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.18;q.vx*=.985;q.l-=.009;x.globalAlpha=Math.max(q.l,0);x.fillStyle=q.c;x.fillRect(q.x,q.y,q.s,q.s*1.6)});if(++f<130)requestAnimationFrame(t);else x.clearRect(0,0,c.width,c.height)},850)}
+function celebrate(p){const e=$('#cele');e.classList.remove('go');void e.offsetWidth;
+const lt=p.paid?Math.round((D(p.paid)-D(p.due))/day):0;
+$('#cs').textContent=p.b+' is paid in full'+(lt>0?', '+lt+' days after the due date':lt<0?', '+(-lt)+' days early':', right on time');
+$('#cs2').textContent=Math.round((T-D(p.d))/day)+' days from kickoff to close';
+e.classList.add('go');chime();burst();navigator.vibrate&&navigator.vibrate([20,60,20,60,40]);
+const a=$('#ca'),s=performance.now()+1150;(function f(t){const k=Math.min(Math.max((t-s)/900,0),1);a.textContent=fmt(p.fee*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(performance.now())}
+document.addEventListener('click',e=>{const t=e.target.closest('button,[data-x]');
+if(!e.target.closest('.pw'))$('#mn').classList.remove('o');
+if(!t)return;const d=t.dataset;
+if(t.id=='pm')return $('#mn').classList.toggle('o');
+if(t.id=='snd'){S.snd=!S.snd;return openPg('set')}
+if(t.id=='cp'){const x=$('#tx');x.select();try{navigator.clipboard.writeText(x.value).catch(()=>document.execCommand('copy'))}catch(_){document.execCommand('copy')}return toast('Message copied')}
+if(t.id=='np')return openFm();if(t.id=='fs')return saveFm();if(t.id=='iS')return saveIv();if(t.id=='cd'){$('#cele').classList.remove('go');S.tab='p';S.pf='c';return render()}
+if(d.x!==undefined)return closeSh();
+if(t.id=='mb')return openDr();if(t.id=='lo')return logout();if(t.id=='pgs')return saveProf();if(t.id=='iss')return sendIss();if(t.id=='lgb')return login();
+if(d.pg)return openPg(d.pg);if(d.th){ST.th=d.th;applyTh();return openPg('set')}if(d.tg){ST[d.tg]=ST[d.tg]?0:1;return openPg('set')}
+if(d.pe)return setPe(d.pe);
+if(d.k){S.per=d.k}else if(d.tab){S.tab=d.tab;scrollTo(0,0)}else if(d.pf){S.pf=d.pf}
+else if(d.dr){const[i,k]=d.dr.split(':');return openSh(i,k)}
+else if(d.tone){sh.tone=d.tone;document.querySelectorAll('#tn button').forEach(b=>b.classList.toggle('on',b.dataset.tone==d.tone));return setMsg()}
+else if(d.rc){const p=P.find(p=>p.id==d.rc);p.rec=p.fee;p.paid=TS;toast(p.b+' payment recorded. Ready to close.')}
+else if(d.cl){const p=P.find(p=>p.id==d.cl);p.x=1;S.pf='c';render();return celebrate(p)}
+else if(d.ro){const p=P.find(p=>p.id==d.ro);p.x=0;S.pf='a';toast(p.b+' is active again, you can edit it now')}
+else if(d.dl){if(S.del==d.dl){const i=P.findIndex(p=>p.id==d.dl),nm=P[i].b;P.splice(i,1);S.del=0;toast(nm+' deleted')}else{S.del=d.dl;clearTimeout(S.dt);S.dt=setTimeout(()=>{S.del=0;render()},4000)}}
+else if(d.iv)return openIv(d.iv);
+else if(d.ed)return openFm(P.find(p=>p.id==d.ed));
+else if(d.rm){const[k,i]=d.rm.split(':');(k=='d'?wd:wi).splice(+i,1);k=='d'?chips():ichips();return}
+else return;
+render()});
+$('#tx').addEventListener('input',wa);
+const pick=(id,arr,fn)=>$(id).addEventListener('change',e=>{[...e.target.files].forEach(f=>arr().push({n:f.name,u:URL.createObjectURL(f)}));e.target.value='';fn()});
+pick('#fk',()=>wd,chips);pick('#iF',()=>wi,ichips);
+const sp=$('#sp'),hide=()=>{sp.classList.add('out');setTimeout(()=>sp.remove(),800)};sp.onclick=hide;setTimeout(hide,matchMedia('(prefers-reduced-motion:reduce)').matches?900:2900);
+document.addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(e.target.id=='pfi'&&f)readImg(f,u=>{U.img=u;setAv($('#pav'))})});
+$('#lgp').addEventListener('keydown',e=>{if(e.key=='Enter')login()});
+render();
+</script></body></html>
